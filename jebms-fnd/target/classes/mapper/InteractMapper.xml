@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.fnd.dao.InteractDao" >
+  <select id="getDefaultIrrHid" parameterType="java.util.Map" resultType="Long">
+        SELECT ID id
+		  FROM FND_INTERACT_HEADERS
+		 WHERE 1=1
+		   AND DEFAULT_FLAG ='Y'
+		   AND USER_ID =  #{userId}
+		   AND INTERACT_CODE = #{interactCode}
+		   LIMIT 1
+  </select>
+  
+  <select id="getIrrHeaderByHId" parameterType="java.util.Map" resultType="java.util.HashMap">
+         SELECT ID id,
+				INTERACT_CODE interactCode,
+				USER_INTERACT_NAME userInteractName,
+				DESCRIPTION description,
+				PUBLIC_FLAG publicFlag,
+				AUTOQUERY_FLAG autoqueryFlag,
+				DEFAULT_FLAG defaultFlag,
+				ORDER_BY orderBy,
+				PAGE_SIZE pageSize
+		 FROM FND_INTERACT_HEADERS
+		WHERE 1 = 1
+		  AND id = #{id}
+  </select>
+  
+  <select id="getIrrLinesByHId" parameterType="java.util.Map" resultType="java.util.HashMap">
+      SELECT LINE_SEQ lineSeq,COLUMN_NAME columnName,column_prompt columnPrompt
+		FROM FND_INTERACT_LINES
+		WHERE HEADER_ID =#{id}
+		ORDER BY LINE_SEQ
+  </select>
+  
+  <select id="deleteIrrByHId" parameterType="Long">
+      {call fnd_interact_del_proc(#{id,mode=IN})}
+  </select>
+  
+  <select id="getIrrHeaders" parameterType="java.util.Map" resultType="java.util.HashMap">
+      SELECT ID id,USER_INTERACT_NAME userInteractName
+		FROM FND_INTERACT_HEADERS
+	 WHERE 1=1
+		 AND INTERACT_CODE =#{interactCode}
+		 AND (USER_ID = #{userId} OR PUBLIC_FLAG = 'Y')
+	 ORDER BY CASE WHEN USER_ID= #{userId} THEN 0 ELSE 1 END,USER_INTERACT_NAME
+  </select>
+  
+  <select id="selectForPageIrrHeaders" parameterType="com.jebms.comm.entity.SearchInfo" resultType="java.util.HashMap">
+      SELECT ID id,USER_INTERACT_NAME userInteractName
+		FROM FND_INTERACT_HEADERS
+	 WHERE 1=1
+		 AND INTERACT_CODE =#{conditionMap.interactCode}
+		 AND (USER_ID = #{authUser.id} OR PUBLIC_FLAG = 'Y')
+		 ${sqlCondition}
+	 ORDER BY CASE WHEN USER_ID= #{authUser.id} THEN 0 ELSE 1 END,USER_INTERACT_NAME
+  </select>
+  
+  <update id="updateIrrHeaderDefault" parameterType="java.util.Map" >
+      update fnd_interact_headers
+            set default_flag='N' 
+      <![CDATA[ where user_id= #{userId}
+          and interact_code=#{interactCode}
+          and default_flag='Y' 
+           and id<>#{id} ]]> 
+  </update>
+  
+   <!-- 添加数据useGeneratedKeys="true" keyProperty="id" 返回主键 -->
+   <insert id="insertIrrHeader" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+       INSERT INTO fnd_interact_headers (
+           user_id,
+		  interact_code,
+		  user_interact_name,
+		  description,
+		  public_flag,
+		  autoquery_flag,
+		  default_flag,
+		  order_by,
+		  page_size,
+		  language,
+		  created_by,
+		  creation_date,
+		  last_updated_by,
+		  last_update_date,
+		  last_update_login
+       )
+       VALUES
+           (
+          #{userId},
+		  #{interactCode},
+		  #{userInteractName},
+		  #{description},
+		  #{publicFlag},
+		  #{autoqueryFlag},
+		  #{defaultFlag},
+		  #{orderBy},
+		  #{pageSize},
+		  #{language},
+		  #{createdBy},
+		  NOW(),
+		  #{lastUpdatedBy},
+		  NOW(),
+		  #{lastUpdateLogin}
+           )
+   </insert>
+
+   <!-- 添加交互式报表的栏位明细 -->
+   <insert id="insertIrrLines" parameterType="java.util.List">
+       INSERT INTO fnd_interact_lines (
+           header_id,
+           line_seq,
+           column_name,
+           column_prompt,
+		  created_by,
+		  creation_date,
+		  last_updated_by,
+		  last_update_date,
+		  last_update_login
+       )
+       VALUES
+       <foreach collection="list" item="item" index="index" separator=",">
+       (  #{item.headerId},
+          #{item.lineSeq},
+          #{item.columnName},
+          #{item.columnPrompt},
+		  #{item.createdBy},
+		  NOW(),
+		  #{item.lastUpdatedBy},
+		  NOW(),
+		  #{item.lastUpdateLogin}
+       )
+       </foreach>
+   </insert>
+</mapper>

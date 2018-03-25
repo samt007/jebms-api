@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.fnd.dao.FndWorklogHeaderDao" >
+  <select id="selectForPage" parameterType="com.jebms.comm.entity.SearchInfo" resultType="com.jebms.fnd.entity.FndWorklogHeaderVO">
+select fwh.*
+      ,pd.department_code
+      ,pd.department_name
+      ,pw.work_group_code
+      ,pw.work_group_name
+      ,flv1.meaning work_type_desc
+      ,flv2.meaning def_line_type_desc
+      ,flv3.meaning work_priorty_desc
+      ,pp1.emp_number work_request_number
+      ,pp1.full_name work_request_fname
+      ,pp2.emp_number work_owner_number
+      ,pp2.full_name work_owner_fname
+      ,flv4.meaning status_desc
+      ,(select username from fnd_user fu where fu.id=fwh.finish_user_id) finish_username
+      ,(select emp_number from fnd_user fu,per_people pp where pp.id=fu.person_id and fu.id=fwh.finish_user_id) finish_user_number
+      ,(select emp_number from fnd_user fu,per_people pp where pp.id=fu.person_id and fu.id=fwh.status_wt_id) status_wt_number
+      ,(select emp_number from fnd_user fu,per_people pp where pp.id=fu.person_id and fu.id=fwh.cancel_user_id) cancel_user_number
+  from fnd_worklog_headers fwh
+      ,per_departments pd
+      ,per_workgroups pw
+      ,fnd_lookup_values flv1
+      ,fnd_lookup_values flv2
+      ,fnd_lookup_values flv3
+      ,per_people pp1
+      ,per_people pp2
+      ,fnd_lookup_values flv4
+ where fwh.department_id=pd.id
+   and fwh.work_group_id=pw.id
+   and flv1.lookup_type='FND_WORK_TYPE'
+   and flv1.lookup_code=fwh.work_type
+   and flv1.language=#{authUser.language}
+   and flv2.lookup_type='FND_WORK_LINETYP'
+   and flv2.lookup_code=fwh.def_line_type
+   and flv2.language=#{authUser.language}
+   and flv3.lookup_type='FND_WORK_PRIORTY'
+   and flv3.lookup_code=fwh.work_priorty
+   and flv3.language=#{authUser.language}
+   and pp1.id=fwh.work_request_pid
+   and pp2.id=fwh.work_owner_pid
+   and flv4.lookup_type='FND_WORK_STATUS'
+   and flv4.lookup_code=fwh.status
+   and flv4.language=#{authUser.language}
+		   ${sqlCondition}
+		   order by ${orderBy}
+  </select>
+  <select id="selectVOByPK" resultType="com.jebms.fnd.entity.FndWorklogHeaderVO" >
+select fwh.*
+      ,pd.department_code
+      ,pd.department_name
+      ,pw.work_group_code
+      ,pw.work_group_name
+      ,flv1.meaning work_type_desc
+      ,flv2.meaning def_line_type_desc
+      ,flv3.meaning work_priorty_desc
+      ,pp1.emp_number work_request_number
+      ,pp1.full_name work_request_fname
+      ,pp2.emp_number work_owner_number
+      ,pp2.full_name work_owner_fname
+      ,flv4.meaning status_desc
+      ,(select username from fnd_user fu where fu.id=fwh.finish_user_id) finish_username
+      ,(select emp_number from fnd_user fu,per_people pp where pp.id=fu.person_id and fu.id=fwh.finish_user_id) finish_user_number
+      ,(select emp_number from fnd_user fu,per_people pp where pp.id=fu.person_id and fu.id=fwh.status_wt_id) status_wt_number
+      ,(select emp_number from fnd_user fu,per_people pp where pp.id=fu.person_id and fu.id=fwh.cancel_user_id) cancel_user_number
+  from fnd_worklog_headers fwh
+      ,per_departments pd
+      ,per_workgroups pw
+      ,fnd_lookup_values flv1
+      ,fnd_lookup_values flv2
+      ,fnd_lookup_values flv3
+      ,per_people pp1
+      ,per_people pp2
+      ,fnd_lookup_values flv4
+ where fwh.department_id=pd.id
+   and fwh.work_group_id=pw.id
+   and flv1.lookup_type='FND_WORK_TYPE'
+   and flv1.lookup_code=fwh.work_type
+   and flv1.language=#{lang,jdbcType=VARCHAR}
+   and flv2.lookup_type='FND_WORK_LINETYP'
+   and flv2.lookup_code=fwh.def_line_type
+   and flv2.language=#{lang,jdbcType=VARCHAR}
+   and flv3.lookup_type='FND_WORK_PRIORTY'
+   and flv3.lookup_code=fwh.work_priorty
+   and flv3.language=#{lang,jdbcType=VARCHAR}
+   and pp1.id=fwh.work_request_pid
+   and pp2.id=fwh.work_owner_pid
+   and flv4.lookup_type='FND_WORK_STATUS'
+   and flv4.lookup_code=fwh.status
+   and flv4.language=#{lang,jdbcType=VARCHAR}
+   and fwh.id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

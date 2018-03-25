@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.fnd.dao.FndLookupTypeDao" >
+  <select id="selectForPage" parameterType="com.jebms.comm.entity.SearchInfo" resultType="com.jebms.fnd.entity.FndLookupTypeVO">
+		  SELECT flt.*
+		             ,fltt.meaning
+		             ,fltt.description
+		             ,fa.appl_code
+		             ,fa.description appl_desc
+		  FROM fnd_lookup_types flt
+		            ,fnd_lookup_types_tl fltt
+		            ,fnd_appl fa
+		 WHERE fa.id=flt.appl_id
+		   AND flt.appl_id=fltt.appl_id
+		   AND flt.lookup_type=fltt.lookup_type
+		   AND fltt.language = #{authUser.language}
+		   ${sqlCondition}
+		   order by ${orderBy}
+  </select>
+  <select id="selectVOByPK" resultType="com.jebms.fnd.entity.FndLookupTypeVO" >
+		  SELECT flt.*
+		             ,fltt.meaning
+		             ,fltt.description
+		             ,fa.appl_code
+		             ,fa.description appl_desc
+		  FROM fnd_lookup_types flt
+		            ,fnd_lookup_types_tl fltt
+		            ,fnd_appl fa
+		 WHERE fa.id=flt.appl_id
+		   AND flt.appl_id=fltt.appl_id
+		   AND flt.lookup_type=fltt.lookup_type
+		   AND fltt.language = #{lang,jdbcType=VARCHAR}
+		   AND flt.appl_id = #{applId,jdbcType=BIGINT}
+		   AND flt.lookup_type = #{lookupType,jdbcType=VARCHAR}
+  </select>
+</mapper>

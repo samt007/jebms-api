@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.fnd.dao.FndRespDao" >
+  <select id="selectForPage" parameterType="com.jebms.comm.entity.SearchInfo" resultType="com.jebms.fnd.entity.FndRespVO">
+		  SELECT fr.*
+		             ,frt.resp_name
+		             ,frt.description
+		             ,fmh.menu_code
+		             ,fmht.menu_name
+		  FROM fnd_resp fr
+		            ,fnd_resp_tl frt
+		            ,fnd_menu_headers fmh
+              		,fnd_menu_headers_tl fmht
+		 WHERE fr.id=frt.resp_id
+		   AND frt.language = #{authUser.language}
+		   AND fr.menu_id=fmh.id
+		   AND fmh.id=fmht.menu_id
+		   AND fmht.language = #{authUser.language}
+		   ${sqlCondition}
+          order by ${orderBy}
+  </select>
+  <select id="selectVOByPK" resultType="com.jebms.fnd.entity.FndRespVO" >
+		  SELECT fr.*
+		             ,frt.resp_name
+		             ,frt.description
+		             ,fmh.menu_code
+		             ,fmht.menu_name
+		  FROM fnd_resp fr
+		            ,fnd_resp_tl frt
+		            ,fnd_menu_headers fmh
+              		,fnd_menu_headers_tl fmht
+		 WHERE fr.id=frt.resp_id
+		   AND frt.language = #{lang,jdbcType=VARCHAR}
+		   AND fr.menu_id=fmh.id
+		   AND fmh.id=fmht.menu_id
+		   AND fmht.language = #{lang,jdbcType=VARCHAR}
+		   AND fr.id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectListByUserId" resultType="com.jebms.fnd.entity.FndRespVO">
+		  SELECT fr.*
+		             ,frt.resp_name
+		             ,frt.description
+		             ,fmh.menu_code
+		             ,fmht.menu_name
+		  FROM fnd_user_resp fur
+		            ,fnd_resp fr
+		            ,fnd_resp_tl frt
+		            ,fnd_menu_headers fmh
+              		,fnd_menu_headers_tl fmht
+		 WHERE fur.resp_id = fr.id
+		   AND fr.id=frt.resp_id
+		   AND frt.language = #{lang,jdbcType=VARCHAR}
+		   AND fr.menu_id=fmh.id
+		   AND fmh.id=fmht.menu_id
+		   AND fmht.language = #{lang,jdbcType=VARCHAR}
+       	   AND NOW() BETWEEN fur.start_date and IFNULL(fur.end_date,NOW())
+		   AND fur.user_id = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>

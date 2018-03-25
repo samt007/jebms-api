@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.per.dao.PerWorkgroupEmpDao" >
+  <select id="selectForPage" parameterType="com.jebms.comm.entity.SearchInfo" resultType="com.jebms.per.entity.PerWorkgroupEmpVO">
+select pwe.*
+      ,pp.emp_number person_number
+      ,pp.full_name person_fname
+  from per_workgroup_emps pwe
+      ,per_people pp
+ where pwe.person_id = pp.id
+		   ${sqlCondition}
+		   order by ${orderBy}
+  </select>
+  <select id="selectVOByPK" resultType="com.jebms.per.entity.PerWorkgroupEmpVO" >
+select pwe.*
+      ,pp.emp_number person_number
+      ,pp.full_name person_fname
+  from per_workgroup_emps pwe
+      ,per_people pp
+ where pwe.person_id = pp.id
+   and pwe.id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

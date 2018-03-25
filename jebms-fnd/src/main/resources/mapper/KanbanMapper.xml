@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.fnd.dao.KanbanDao" >
+  <select id="selectForPage" parameterType="com.jebms.comm.entity.SearchInfo" resultType="com.jebms.fnd.entity.KanbanVO">
+	SELECT tmp.* 
+     FROM(
+			SELECT bk.id
+			      ,bk.customer_id
+				     ,bc.customer_name
+				     ,bc.customer_code
+				  ,bk.amount
+				  ,bk.currency
+				     ,blv1.meaning currency_desc
+				  ,bk.pay_type payType
+				     ,blv2.meaning pay_type_desc
+				  ,bk.description
+				  ,bk.start_date
+				  ,bk.end_date
+				  ,bk.created_by
+				  ,bk.creation_date
+				  ,bk.last_updated_by
+				  ,bk.last_update_date
+				  ,bk.last_update_login
+			  FROM bw_kanban bk
+			      ,fnd_lookup_values blv1
+			      ,fnd_lookup_values blv2
+				  ,bw_customer bc
+			 WHERE bc.id=bk.customer_id
+			   AND blv1.lookup_type='CURRENCY'
+			   AND bk.currency=blv1.lookup_code
+			   AND blv1.language = #{authUser.language}
+			   AND blv2.lookup_type='PAY_TYPE'
+			   AND bk.pay_type=blv2.lookup_code
+			   AND blv2.language = #{authUser.language}
+			    ${sqlCondition}) tmp
+			    ORDER BY ${orderBy}
+  </select>
+  <select id="selectVOByPK" resultType="com.jebms.fnd.entity.KanbanVO" >
+		  SELECT bk.id
+		      ,bk.customer_id customerId
+			     ,bc.customer_name customerName
+			     ,bc.customer_code customerCode
+			  ,bk.amount
+			  ,bk.currency
+			     ,blv1.meaning currencyDesc
+			  ,bk.pay_type payType
+			     ,blv2.meaning payTypeDesc
+			  ,bk.description
+			  ,bk.start_date startDate
+			  ,bk.end_date endDate
+			  ,bk.created_by createdBy
+			  ,bk.creation_date creationDate
+			  ,bk.last_updated_by lastUpdatedBy
+			  ,bk.last_update_date lastUpdateDate
+			  ,bk.last_update_login lastUpdateLogin
+		  FROM bw_kanban bk
+		      ,fnd_lookup_values blv1
+		      ,fnd_lookup_values blv2
+			  ,bw_customer bc
+		 WHERE bc.id=bk.customer_id
+		   AND blv1.lookup_type='CURRENCY'
+		   AND bk.currency=blv1.lookup_code
+		   AND blv1.language = #{lang,jdbcType=VARCHAR}
+		   AND blv2.lookup_type='PAY_TYPE'
+		   AND bk.pay_type=blv2.lookup_code
+		   AND blv2.language = #{lang,jdbcType=VARCHAR}
+		   AND bk.id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectForTop" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		SELECT bc.customer_name customerName
+				,SUM(bk.amount) tolAmount
+		    ,COUNT(1) cnt
+			FROM bw_kanban bk
+				,bw_customer bc
+		 WHERE bc.id=bk.customer_id
+				AND bk.currency='CNY'
+		GROUP BY bc.customer_name
+		ORDER BY SUM(bk.amount) DESC
+		LIMIT 10
+  </select>
+</mapper>

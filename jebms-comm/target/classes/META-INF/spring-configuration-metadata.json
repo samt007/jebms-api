@@ -1,0 +1,30 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.jebms.comm.security.util.TokenUtil",
+      "name": "security.jwt",
+      "type": "com.jebms.comm.security.util.TokenUtil"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.jebms.comm.security.util.TokenUtil",
+      "name": "security.jwt.expiration",
+      "description": "过期时间(指token留在缓存[redis]的过期时间，每次使用会自动更新)",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.jebms.comm.security.util.TokenUtil",
+      "name": "security.jwt.secret",
+      "description": "secret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.jebms.comm.security.util.TokenUtil",
+      "name": "security.jwt.token-expiration",
+      "description": "token的绝对过期时间(一般为7天)",
+      "type": "java.lang.Long"
+    }
+  ]
+}

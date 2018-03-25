@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jebms.fnd.dao.CountryDao" >
+  <select id="selectForPage" parameterType="com.jebms.comm.entity.SearchInfo" resultType="java.util.HashMap">
+     SELECT tmp.* 
+     FROM(
+     SELECT  cn.id AS id,
+	        cn.country_name AS countryName,
+	        cn.country_code AS countryCode,
+	        cn.START_DATE AS startDate,
+	        cn.END_DATE AS endDate,
+	        cn.TYPE_ID AS typeId,
+	        cn.DESCRIPTION AS description,
+	        cn.CREATED_BY AS createdBy,
+	        us.user_login AS createdByUser,
+	        cn.CREATION_DATE AS creationDate,
+	        cn.LAST_UPDATED_BY AS lastUpdatedBy,
+	        cn.LAST_UPDATE_DATE AS lastUpdateDate,
+	        cn.LAST_UPDATE_LOGIN AS lastUpdateLogin
+          FROM country cn,
+    		         user us
+        WHERE  us.id = cn.CREATED_BY
+        ${sqlCondition}) tmp
+        ORDER BY ${orderBy}
+  </select>
+  <!-- 这个是必须的，返回包括别的栏位的Country对象是为了在Controller层更新的时候方便！ -->
+  <select id="selectVOByPK" parameterType="java.lang.Long"  resultType="com.jebms.fnd.entity.CountryVO" >
+   SELECT  cn.id AS id,
+	        cn.country_name AS countryName,
+	        cn.country_code AS countryCode,
+	        cn.START_DATE AS startDate,
+	        cn.END_DATE AS endDate,
+	        cn.TYPE_ID AS typeId,
+	        cn.DESCRIPTION AS description,
+	        cn.CREATED_BY AS createdBy,
+	        us.user_login AS createdByUser,
+	        cn.CREATION_DATE AS creationDate,
+	        cn.LAST_UPDATED_BY AS lastUpdatedBy,
+	        cn.LAST_UPDATE_DATE AS lastUpdateDate,
+	        cn.LAST_UPDATE_LOGIN AS lastUpdateLogin
+          FROM country cn,
+    		         user us
+        WHERE  us.id = cn.CREATED_BY
+          AND cn.id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>
+
+<!-- <if test="@com.jEBMS.comm.utils.SqlUtil@isVaildValue(conditionMap.countryName)">
+    and cn.country_name like #{conditionMap.countryName}
+</if> -->
