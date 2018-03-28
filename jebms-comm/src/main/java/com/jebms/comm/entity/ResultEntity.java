@@ -1,5 +1,7 @@
 package com.jebms.comm.entity;
 
+import java.io.Serializable;
+
 /**
  * 封装返回结果对象。
  * <br>code：0:成功  非0:失败( 或者：0:成功  1:警告   2:错误  ----注意：确定警告的时候要做什么动作)
@@ -9,7 +11,8 @@ package com.jebms.comm.entity;
  * @version 1.0
  * @date 2017年8月29日
  */
-public class ResultEntity<T> {
+@SuppressWarnings("serial")
+public class ResultEntity<T> implements Serializable {
 
 	public static String CODE="code"; // 对应retcode
 	public static String MESSAGE="message"; // 对应errbuf
