@@ -29,6 +29,7 @@ spring:
         max-wait: -1 #最大等待时间
         min-idle: 0 #初始化连接数
         
+    ## Dubbo 服务消费者配置
     dubbo:
         application.name: jebms-fnd-consumer # 本服务的名称
         registry.address: zookeeper://192.168.99.100:2182 # ZooKeeper所在服务器的IP和端口号
