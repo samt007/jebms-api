@@ -48,7 +48,7 @@ public class FndIconController extends BaseController{
     @PostMapping(value = "/select/{id}")
     @ApiOperation(value = "获取图标")
     public ResultEntity select(@PathVariable("id") Long id) {
-    	FndIcon record=iconService.selectByPrimaryKey(new FndIcon(id));
+    	FndIcon record=(FndIcon) iconService.selectByPrimaryKey(new FndIcon(id));
     	return ResultInfo.success(record);
     }
 

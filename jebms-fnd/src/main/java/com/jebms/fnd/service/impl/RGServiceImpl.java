@@ -1,4 +1,4 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 
 import java.util.HashMap;
@@ -14,6 +14,7 @@ import com.jebms.comm.springjdbc.DevJdbcDaoSupport;
 import com.jebms.comm.utils.SqlUtil;
 import com.jebms.fnd.dao.RGDao;
 import com.jebms.fnd.entity.FndRespVO;
+import com.jebms.fnd.service.RGService;
 
 import javax.sql.DataSource;
 
@@ -31,7 +32,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @SuppressWarnings("rawtypes")
-public class RGService extends DevJdbcDaoSupport {
+public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
 
     @Autowired
     private RGDao rgDao;
@@ -45,7 +46,7 @@ public class RGService extends DevJdbcDaoSupport {
     }*/
     
 	@Autowired
-	RGService(DataSource dataSource) {
+	RGServiceImpl(DataSource dataSource) {
 	    setDataSource(dataSource);
 	}
     

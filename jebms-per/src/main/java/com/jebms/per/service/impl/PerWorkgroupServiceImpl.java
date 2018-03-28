@@ -1,4 +1,4 @@
-package com.jebms.per.service;
+package com.jebms.per.service.impl;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import com.jebms.per.dao.PerWorkgroupDao;
 import com.jebms.per.dao.PerWorkgroupEmpDao;
 import com.jebms.per.entity.PerWorkgroupVO;
 import com.jebms.per.entity.PerWorkgroupEmpVO;
+import com.jebms.per.service.PerWorkgroupService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @SuppressWarnings("rawtypes")
-public class PerWorkgroupService  extends DevJdbcDaoSupport {
+public class PerWorkgroupServiceImpl  extends DevJdbcDaoSupport implements PerWorkgroupService {
     
     @Autowired
     private PerWorkgroupDao groupDao;
@@ -38,7 +39,7 @@ public class PerWorkgroupService  extends DevJdbcDaoSupport {
     private PerWorkgroupEmpDao groupEmpDao;
     
 	@Autowired
-	PerWorkgroupService(DataSource dataSource) {
+	PerWorkgroupServiceImpl(DataSource dataSource) {
 	    setDataSource(dataSource);
 	}
     

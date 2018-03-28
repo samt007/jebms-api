@@ -1,9 +1,10 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 
 import com.jebms.comm.core.BaseService;
 import com.jebms.fnd.dao.FndLogDao;
 import com.jebms.fnd.entity.FndLog;
+import com.jebms.fnd.service.FndLogService;
 
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class FndLogService extends BaseService<FndLogDao,FndLog>{
+public class FndLogServiceImpl extends BaseService<FndLogDao,FndLog> implements FndLogService {
 
 }

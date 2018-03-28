@@ -2,33 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-    <artifactId>jebms</artifactId>
-    <groupId>com.jebms</groupId>
-    <name>Java E-Business Manage System</name>
-    <url>http://maven.apache.org</url>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-
     <modelVersion>4.0.0</modelVersion>
-
-    <modules>
-		<module>jebms-comm</module>          <!--核心Comm模块 -->
-		<module>jebms-basic-support</module> <!--核心基础支撑模块 -->
-		<module>jebms-fnd</module>           <!--核心Fnd模块 -->
-		<module>jebms-per</module>           <!--人力资源per模块 -->
-		<module>jebms-erp</module>           <!--和erp对接模块 -->
-    </modules>
-
-    <properties>
-		<!-- main version setting -->
-		<activiti.version>5.21.0</activiti.version>
-		<!-- platform setting -->
-		<com.jebms.groupId>com.jebms</com.jebms.groupId>
-		<com.jebms.version>1.0.0-SNAPSHOT</com.jebms.version>
-		<com.jebms.inceptionYear>2017-2019</com.jebms.inceptionYear>
-		<validator-api.version>1.1.0.Final</validator-api.version>
-        <!--spring-boot默认jdk版本是1.6，手动指定为1.8-->
+    
+    <artifactId>jebms-basic-support</artifactId>
+    <groupId>com.jebms</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <name>jebms-basic-support</name>
+	<description></description>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.6.RELEASE</version>
+		<relativePath/>
+	</parent>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -47,18 +40,17 @@
 		<velocity.version>1.7</velocity.version>
 		<jwt.version>0.6.0</jwt.version>
 		<pagehelper.version>1.1.3</pagehelper.version>
-    </properties>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
+	</properties>
+	
 
     <dependencies>
     
+        <dependency>
+            <groupId>com.jebms</groupId>
+            <artifactId>jebms-comm</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -263,5 +255,18 @@
         </dependency>
         
     </dependencies>
+	
+    <build>
+        <plugins>
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <configuration>  
+                    <source>${java.version}</source>  
+                    <target>${java.version}</target>  
+                </configuration>  
+            </plugin>  
+        </plugins>
+    </build>
 
 </project>

@@ -1,4 +1,4 @@
-package com.jebms.erp.service;
+package com.jebms.erp.service.impl;
 
 
 import java.util.Date;
@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import com.jebms.comm.springjdbc.DevJdbcDaoSupport;
 import com.jebms.erp.entity.FndUserVO;
+import com.jebms.erp.service.SystemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,10 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class SystemService extends DevJdbcDaoSupport {
+public class SystemServiceImpl extends DevJdbcDaoSupport implements SystemService {
 	
 	@Autowired
-	SystemService(DataSource dataSource) {
+	SystemServiceImpl(DataSource dataSource) {
 	    setDataSource(dataSource);
 	}
 	

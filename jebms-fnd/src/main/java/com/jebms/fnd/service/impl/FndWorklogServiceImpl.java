@@ -1,4 +1,4 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +25,7 @@ import com.jebms.fnd.dao.FndWorklogHeaderDao;
 import com.jebms.fnd.dao.FndWorklogLineDao;
 import com.jebms.fnd.entity.FndWorklogHeaderVO;
 import com.jebms.fnd.entity.FndWorklogLineVO;
+import com.jebms.fnd.service.FndWorklogService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @SuppressWarnings("rawtypes")
-public class FndWorklogService  extends DevJdbcDaoSupport {
+public class FndWorklogServiceImpl  extends DevJdbcDaoSupport implements FndWorklogService {
     
     @Autowired
     private FndWorklogHeaderDao headerDao;
@@ -48,7 +49,7 @@ public class FndWorklogService  extends DevJdbcDaoSupport {
     private FndWorklogLineDao lineDao;
     
 	@Autowired
-	FndWorklogService(DataSource dataSource) {
+	FndWorklogServiceImpl(DataSource dataSource) {
 	    setDataSource(dataSource);
 	}
 	

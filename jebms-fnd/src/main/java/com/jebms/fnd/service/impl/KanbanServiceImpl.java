@@ -1,4 +1,4 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -16,6 +16,7 @@ import com.jebms.comm.core.BaseService;
 import com.jebms.fnd.dao.KanbanDao;
 import com.jebms.fnd.entity.Kanban;
 import com.jebms.fnd.entity.KanbanVO;
+import com.jebms.fnd.service.KanbanService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +32,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @SuppressWarnings("rawtypes")
-public class KanbanService extends BaseService<KanbanDao,Kanban> {
+public class KanbanServiceImpl extends BaseService<KanbanDao,Kanban> implements KanbanService {
 
     @Autowired
     private KanbanDao kanbanDao;
@@ -92,15 +93,5 @@ public class KanbanService extends BaseService<KanbanDao,Kanban> {
     public Long getKanbanCustomerCnt(){
     	return jdbcTemplate.queryForObject("SELECT count(DISTINCT customer_id) FROM bw_kanban", Long.class);
     }
-    
-    /*
-    @SuppressWarnings({ "resource", "unchecked" })
-	public static void main(String[] args){
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-    	KanbanService serv= (KanbanService)context.getBean("kanbanService");
-    	System.out.println(serv);
-    	KanbanVO vo=serv.selectVOByPK(2L);
-    	System.out.println(vo.getCustomerName());
-    }*/
 
 }

@@ -1,4 +1,4 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 
 import java.util.ArrayList;
@@ -38,6 +38,7 @@ import com.jebms.fnd.entity.FndRespTl;
 import com.jebms.fnd.entity.FndRespVO;
 import com.jebms.fnd.entity.FndUserRespVO;
 import com.jebms.fnd.entity.FndUserVO;
+import com.jebms.fnd.service.SystemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @SuppressWarnings("rawtypes")
-public class SystemService {
+public class SystemServiceImpl implements SystemService {
 
     @Autowired
     private FndUserDao userDao;

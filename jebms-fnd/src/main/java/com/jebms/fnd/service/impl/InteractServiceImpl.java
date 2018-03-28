@@ -1,4 +1,4 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -10,6 +10,7 @@ import com.jebms.comm.entity.SearchInfo;
 import com.jebms.comm.utils.SqlUtil;
 import com.jebms.comm.utils.TypeConverter;
 import com.jebms.fnd.dao.InteractDao;
+import com.jebms.fnd.service.InteractService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ import java.util.Map;
  */
 @Service
 @SuppressWarnings("rawtypes")
-public class InteractService {
+public class InteractServiceImpl implements InteractService {
 
     @Autowired
     private InteractDao irrDao;

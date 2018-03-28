@@ -1,4 +1,4 @@
-package com.jebms.fnd.service;
+package com.jebms.fnd.service.impl;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import com.jebms.fnd.dao.FndLookupValueDao;
 import com.jebms.fnd.entity.FndLookupTypeTl;
 import com.jebms.fnd.entity.FndLookupTypeVO;
 import com.jebms.fnd.entity.FndLookupValue;
+import com.jebms.fnd.service.FndLookupService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @SuppressWarnings("rawtypes")
-public class FndLookupService {
+public class FndLookupServiceImpl implements FndLookupService {
     
     @Autowired
     private FndLookupTypeDao lookupTypeDao;

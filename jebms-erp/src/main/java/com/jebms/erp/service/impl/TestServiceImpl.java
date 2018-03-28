@@ -1,10 +1,13 @@
-package com.jebms.erp.service;
+package com.jebms.erp.service.impl;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.jebms.comm.entity.ResultEntity;
+import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.springjdbc.DevJdbcDaoSupport;
+import com.jebms.erp.service.TestService;
 
 import javax.sql.DataSource;
 
@@ -12,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 工作日志数据EDI同步
+ * 测试
  *
  * @author samt007@qq.com
  * @version 1.0
@@ -20,18 +23,27 @@ import org.springframework.stereotype.Service;
 
 @Service
 @SuppressWarnings("rawtypes")
-public class WorklogService extends DevJdbcDaoSupport {
+public class TestServiceImpl extends DevJdbcDaoSupport implements TestService {
     
 	@Autowired
-	WorklogService(DataSource dataSource) {
+	TestServiceImpl(DataSource dataSource) {
 	    setDataSource(dataSource);
 	}
+	
+	public ResultEntity testSql() throws Exception{
+		/*String sql = "SELECT MEANING display,LOOKUP_CODE value"
+				+ " FROM fnd_lookup_values  "
+				+ " WHERE ROWNUM<=10 ";*/
+		String sql="SELECT * FROM V$VERSION";
+		Map<String,Object> paramMap=new  HashMap<String,Object>();
+    	return ResultInfo.success(this.getDevJdbcTemplate().queryForList(sql,paramMap));
+    }
     
-	public ResultEntity headerEdi(Map<String,Object> params) throws Exception{
+	public ResultEntity worklogHeaderEdi(Map<String,Object> params) throws Exception{
 		String sql ="Declare "
 				+ "     l_header_id number; "
 				+ "  begin "
-				+ "  APPS.XYG_ERP_WORKLOG_PKG.EDI_HEADERS( "
+				+ "  XYG_ERP_WORKLOG_PKG.EDI_HEADERS( "
 				+ "  :P_ID"
 				+ " ,:P_DEPARTMENT_CODE"
 				+ " ,:P_WORK_GROUP_CODE"
@@ -65,9 +77,9 @@ public class WorklogService extends DevJdbcDaoSupport {
 		return this.getDevJdbcTemplate().executeForResultEntity(sql, params);
     }
 	
-	public ResultEntity lineEdi(Map<String,Object> params) throws Exception{
+	public ResultEntity worklogLineEdi(Map<String,Object> params) throws Exception{
 		String sql ="  begin "
-				+ "  APPS.XYG_ERP_WORKLOG_PKG.EDI_LINES( "
+				+ "  XYG_ERP_WORKLOG_PKG.EDI_LINES( "
 				+ "  :P_ID"
 				+ " ,:P_HEADER_ID"
 				+ " ,:P_LINE_NUM"
@@ -86,23 +98,6 @@ public class WorklogService extends DevJdbcDaoSupport {
 				+ " ,:"+ResultEntity.CODE
 				+ " ,:"+ResultEntity.MESSAGE
 				+ " ); "
-				+ "end;";
-		return this.getDevJdbcTemplate().executeForResultEntity(sql, params);
-    }
-	
-	public ResultEntity lineContentProp(Map<String,Object> params) throws Exception{
-		String sql =" declare"
-				+ " L_LINE_CONTENT VARCHAR2(50); "
-				+ " L_LINE_SUB_TYPE VARCHAR2(50);"
-				+ " L_APPLICATION_SHORT_NAME VARCHAR2(50); "
-				+ " begin "
-				+ " L_LINE_CONTENT := :P_LINE_CONTENT; "
-				+ " L_LINE_SUB_TYPE := APPS.XYG_ERP_WORKLOG_PKG.GET_DEF_LINE_SUB_TYPE(L_LINE_CONTENT,0); "
-				+ " L_APPLICATION_SHORT_NAME := APPS.XYG_ERP_WORKLOG_PKG.GET_DEF_APP_SHORT_NAME(L_LINE_CONTENT,L_LINE_SUB_TYPE,0);"
-                + " :"+ResultEntity.PARAM1+":= L_LINE_SUB_TYPE; "
-                + " :"+ResultEntity.PARAM2+":= L_APPLICATION_SHORT_NAME; "
-                + " :"+ResultEntity.CODE+":= 0; "
-                + " :"+ResultEntity.MESSAGE+":= ''; "
 				+ "end;";
 		return this.getDevJdbcTemplate().executeForResultEntity(sql, params);
     }

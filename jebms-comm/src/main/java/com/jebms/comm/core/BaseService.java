@@ -24,7 +24,7 @@ import tk.mybatis.mapper.common.Mapper;
  */
 @Service
 @SuppressWarnings("rawtypes")
-public abstract class BaseService<D extends Mapper<T>,T extends BaseEntity> {
+public abstract class BaseService<D extends Mapper<T>,T extends BaseEntity>  {
 
     @Autowired
     protected D mapper;
@@ -40,13 +40,12 @@ public abstract class BaseService<D extends Mapper<T>,T extends BaseEntity> {
     	return this.authUser;
     }
     
-	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T> T selectByPrimaryKey(T record) {
+	public T selectByPrimaryKey(T record) {
 		record=(T) mapper.selectByPrimaryKey(record);
 		((BaseEntity) record).setValueUUID();
         return record;
     }
-	
+    
 	public List<T> selectAll() {
         return (List<T>) mapper.selectAll();
     }
