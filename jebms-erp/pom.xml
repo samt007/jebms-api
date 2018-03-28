@@ -11,21 +11,6 @@
     <packaging>war</packaging>
     <artifactId>jebms-erp</artifactId>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>com.jebms</groupId>
-            <artifactId>jebms-comm</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jebms</groupId>
-            <artifactId>jebms-basic-support</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        
-    </dependencies>
     <build>
         <plugins>
             <plugin>

@@ -10,7 +10,7 @@ import com.jebms.erp.service.WorklogService;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 
 /**
  * 工作日志数据EDI同步
@@ -19,7 +19,8 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  */
 
-@Service
+@Service(version = "1.0.0")
+@org.springframework.stereotype.Service
 @SuppressWarnings("rawtypes")
 public class WorklogServiceImpl extends DevJdbcDaoSupport implements WorklogService {
     
