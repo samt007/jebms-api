@@ -47,7 +47,7 @@ public class FndWorklogServiceImpl  extends DevJdbcDaoSupport implements FndWork
     @Autowired
     private FndWorklogLineDao lineDao;
     
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", timeout = 15000)
     private WorklogService erpWorklogService;
     
 	@Autowired
