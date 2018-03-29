@@ -83,7 +83,8 @@ public class FndWorklogServiceImpl  extends DevJdbcDaoSupport implements FndWork
     			ediHeaders("INSERT",record,user,request);
     		} catch (Exception e) {
     			Transaction.setRollbackOnly();
-    			return ResultInfo.error("数据同步到ERP失败！信息:"+e.getMessage());
+    			e.printStackTrace();
+    			return ResultInfo.error("数据同步到ERP(Header)失败！信息:"+e.getMessage());
     		}
     		return ResultInfo.success(record);
     	}else{
