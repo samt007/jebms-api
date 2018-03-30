@@ -15,4 +15,4 @@ zuul:
 
 eureka:
     client:
-        serviceUrl.defaultZone: http://localhost:8001/eureka/
+        serviceUrl.defaultZone: http://192.168.99.100:8001/eureka/
