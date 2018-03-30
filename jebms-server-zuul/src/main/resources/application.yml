@@ -1,0 +1,18 @@
+server:
+    port: 8002
+
+spring:
+    # 环境 dev|test|pro
+    profiles:
+        active: pro
+    application:
+        name: jebms-server-zuul
+
+zuul:
+    routes:
+        producer.path: /jebms/erp/**
+        producer.serviceId: jebms-erp
+
+eureka:
+    client:
+        serviceUrl.defaultZone: http://localhost:8001/eureka/
