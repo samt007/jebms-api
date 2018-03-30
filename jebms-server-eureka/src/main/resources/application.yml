@@ -9,6 +9,8 @@ spring:
         name: jebms-server-eureka
 
 eureka:
+    instance:
+        prefer-ip-address: true
     client:
         register-with-eureka: false
         fetch-registry: false
