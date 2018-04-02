@@ -29,7 +29,7 @@ eureka:
         instance-id: 192.168.99.100:${server.port}
         hostname: 192.168.99.100
     client:
-        serviceUrl.defaultZone: http://192.168.99.100:8001/eureka/
+        service-url.defaultZone: http://192.168.99.100:8001/eureka/
 
 # Mybatis配置
 mybatis:
