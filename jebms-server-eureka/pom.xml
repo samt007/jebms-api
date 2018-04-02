@@ -6,7 +6,7 @@
 	<groupId>com.jebms</groupId>
 	<artifactId>jebms-server-eureka</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>jebms-server-eureka</name>
 	<description>Jebms project for Spring cloud eureka</description>
