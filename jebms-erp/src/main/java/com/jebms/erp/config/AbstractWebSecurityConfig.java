@@ -78,7 +78,7 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/webjars/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/v2/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/info").permitAll();
+                .antMatchers(HttpMethod.GET, "/**").permitAll();
         security
             .csrf().disable()
             .exceptionHandling().authenticationEntryPoint(new MyAuthenticationEntryPoint()).and()
