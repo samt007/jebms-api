@@ -17,13 +17,13 @@ import com.jebms.comm.entity.ResultEntity;
 @FeignClient(name= "jebms-erp")
 public interface ErpWorklogService {
     
-    @PostMapping(value = "/erp/worklog/headerEdi")
+    @PostMapping(value = "/jebms/erp/worklog/headerEdi")
     public ResultEntity  headerEdi(@RequestBody JSONObject requestJson);
     
-    @PostMapping(value = "/erp/worklog/lineEdi")
+    @PostMapping(value = "/jebms/erp/worklog/lineEdi")
     public ResultEntity  lineEdi(@RequestBody JSONObject requestJson);
     
-    @PostMapping(value = "/erp/worklog/lineContentProp")
+    @PostMapping(value = "/jebms/erp/worklog/lineContentProp")
     public ResultEntity lineContentProp(@RequestBody JSONObject requestJson);
     
 }
