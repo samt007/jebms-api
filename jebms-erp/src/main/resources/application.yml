@@ -24,8 +24,10 @@ spring:
         cache: false
         
 eureka:
+    instance:
+        prefer-ip-address: true
     client:
-        serviceUrl.defaultZone: http://jebms-server-eureka:8080/eureka/
+        serviceUrl.defaultZone: http://192.168.99.100:8001/eureka/
 
 # Mybatis配置
 mybatis:
