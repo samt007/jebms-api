@@ -21,3 +21,4 @@ eureka:
         hostname: 192.168.99.100
     client:
         serviceUrl.defaultZone: http://192.168.99.100:8001/eureka/
+        eureka-server-read-timeout-seconds: 30
