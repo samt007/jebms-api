@@ -6,6 +6,8 @@ import feign.RequestTemplate;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
+import com.jebms.comm.utils.RequestUtil;
+import com.jebms.comm.utils.IPUtils;
 import com.jebms.comm.utils.TypeConverter;
 
 @Component
@@ -21,7 +23,8 @@ public class JwtFeignInterceptor implements RequestInterceptor {
             System.out.println(JSON.toJSONString(UserUtil.getCurrentToken()));
             if (!TypeConverter.isEmpty(currentToken)){
                 template.header(key, currentToken);
-                System.out.println("add the token for feign:"+currentToken);
+                template.header("X-Forwarded-For", IPUtils.getIpAddr(RequestUtil.getHttpServletRequest()));
+                System.out.println("add the token for feign:"+currentToken+",IP:"+IPUtils.getIpAddr(RequestUtil.getHttpServletRequest()));
             }
         }
     }
