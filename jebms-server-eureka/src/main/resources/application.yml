@@ -11,6 +11,7 @@ spring:
 eureka:
     instance:
         prefer-ip-address: true
+        ip-address: 192.168.99.100
         instance-id: 192.168.99.100:${server.port}
         hostname: 192.168.99.100
     client:
