@@ -1,5 +1,6 @@
 server:
     port: 8001
+    ip-address: 192.168.99.100
 
 spring:
     # 环境 dev|test|pro
@@ -11,13 +12,13 @@ spring:
 eureka:
     instance:
         prefer-ip-address: true
-        ip-address: 192.168.99.100
-        instance-id: 192.168.99.100:${server.port}
-        hostname: 192.168.99.100
+        ip-address: ${server.ipAddress}
+        instance-id: ${server.ipAddress}:${server.port}
+        hostname: ${server.ipAddress}
     client:
         register-with-eureka: false
         fetch-registry: false
-        service-url.defaultZone: http://192.168.99.100:8001/eureka/
+        service-url.defaultZone: http://${server.ipAddress}:8001/eureka/
         eureka-server-read-timeout-seconds: 30
     server:
         enable-self-preservation: false
