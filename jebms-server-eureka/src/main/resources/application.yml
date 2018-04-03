@@ -1,6 +1,6 @@
 server:
     port: 8001
-    ip-address: 192.168.99.100
+    ipAddress: 192.168.99.100
 
 spring:
     # 环境 dev|test|pro

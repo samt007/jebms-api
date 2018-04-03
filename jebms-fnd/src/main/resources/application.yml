@@ -5,7 +5,7 @@ server:
         min-spare-threads: 30
     port: 8080
     context-path: /jebms
-    ip-address: 192.168.99.100
+    ipAddress: 192.168.99.100
 
 # mysql
 spring:
