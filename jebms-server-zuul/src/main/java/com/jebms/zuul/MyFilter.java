@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class MyFilter extends ZuulFilter {
 
+	public static final String TOKEN_HEADER = "Authorization";
     private static Logger log = LoggerFactory.getLogger(MyFilter.class);
     @Override
     public String filterType() {
@@ -32,9 +33,10 @@ public class MyFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
+        ctx.addZuulRequestHeader(TOKEN_HEADER, request.getHeader(TOKEN_HEADER));
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
         log.info("ip: "+this.getIpAddr(request));
-        log.info("Authorization: "+request.getHeader("Authorization"));
+        log.info("Authorization: "+request.getHeader(TOKEN_HEADER));
         /*Object accessToken = request.getParameter("token");
         if(accessToken == null) {
             log.warn("token is empty");
