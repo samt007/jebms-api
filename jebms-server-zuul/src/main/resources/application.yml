@@ -10,6 +10,7 @@ spring:
         name: jebms-server-zuul
 
 zuul:
+    addProxyHeaders: true
     routes:
         fnd:
             path: /jebms/fnd/**
