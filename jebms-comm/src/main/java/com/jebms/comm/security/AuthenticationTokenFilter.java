@@ -1,6 +1,8 @@
 package com.jebms.comm.security;
 
+import com.jebms.comm.utils.IPUtils;
 import com.jebms.comm.utils.StringHelper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.IOException;
 
 /**
@@ -38,6 +41,8 @@ public class AuthenticationTokenFilter extends GenericFilterBean {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String authHeader = httpRequest.getHeader(TOKEN_HEADER);
+        
+        System.out.print("current req ip: "+IPUtils.getIpAddr(httpRequest));
 
         if (authHeader == null || !authHeader.startsWith(AbstractTokenUtil.TOKEN_TYPE_BEARER)) {
             chain.doFilter(request, response);

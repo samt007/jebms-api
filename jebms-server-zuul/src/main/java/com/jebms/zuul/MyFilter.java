@@ -2,6 +2,7 @@ package com.jebms.zuul;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -31,8 +32,8 @@ public class MyFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        System.out.println("ip:"+request.getHeader("X-Forwarded-For"));
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
+        log.info("ip: "+this.getIpAddr(request));
         /*Object accessToken = request.getParameter("token");
         if(accessToken == null) {
             log.warn("token is empty");
@@ -46,5 +47,35 @@ public class MyFilter extends ZuulFilter {
         }
         log.info("ok");*/
         return null;
+    }
+    
+
+	public String getIpAddr(HttpServletRequest request) {
+		
+    	String ip = request.getHeader("X-Forwarded-For");
+        if ( ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if ( ip == null || ip.length() == 0 || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if ( ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if ( ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if ( ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        
+        //使用代理，则获取第一个IP地址
+        if ( !(ip == null || ip.length() == 0) && ip.length() > 15) {
+			if(ip.indexOf(",") > 0) {
+				ip = ip.substring(0, ip.indexOf(","));
+			}
+		}
+        
+        return ip;
     }
 }
