@@ -1,5 +1,6 @@
 server:
     port: 8002
+    # 由于用了docker部署整个微服务，所以要配置docker宿主的ip地址！
     ipAddress: 192.168.99.100
 
 spring:
@@ -10,6 +11,12 @@ spring:
         name: jebms-server-zuul
 
 zuul:
+    max:
+      host:
+        connections: 500
+    host:
+      socket-timeout-millis: 60000
+      connect-timeout-millis: 60000
     addProxyHeaders: true
     routes:
         fnd:
@@ -31,3 +38,9 @@ eureka:
     client:
         serviceUrl.defaultZone: http://${server.ipAddress}:8001/eureka/
         eureka-server-read-timeout-seconds: 30
+
+ribbon:
+    eureka:
+        enabled: false
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000

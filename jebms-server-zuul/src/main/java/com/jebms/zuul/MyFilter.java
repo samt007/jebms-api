@@ -3,8 +3,6 @@ package com.jebms.zuul;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MyFilter extends ZuulFilter {
 
 	public static final String TOKEN_HEADER = "Authorization";
-    private static Logger log = LoggerFactory.getLogger(MyFilter.class);
+    //private static Logger log = LoggerFactory.getLogger(MyFilter.class);
     @Override
     public String filterType() {
         return "pre";
@@ -34,21 +32,9 @@ public class MyFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         ctx.addZuulRequestHeader(TOKEN_HEADER, request.getHeader(TOKEN_HEADER));
-        log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
-        log.info("ip: "+this.getIpAddr(request));
-        log.info("Authorization: "+request.getHeader(TOKEN_HEADER));
-        /*Object accessToken = request.getParameter("token");
-        if(accessToken == null) {
-            log.warn("token is empty");
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            try {
-                ctx.getResponse().getWriter().write("token is empty");
-            }catch (Exception e){}
-
-            return null;
-        }
-        log.info("ok");*/
+        //log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
+        //log.info("ip: "+this.getIpAddr(request));
+        //log.info("Authorization: "+request.getHeader(TOKEN_HEADER));
         return null;
     }
     

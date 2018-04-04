@@ -1,6 +1,5 @@
 package com.jebms.comm.security;
 
-import com.jebms.comm.utils.IPUtils;
 import com.jebms.comm.utils.StringHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +41,8 @@ public class AuthenticationTokenFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String authHeader = httpRequest.getHeader(TOKEN_HEADER);
         
-        System.out.println(httpRequest.getRequestURL().toString()+", current req ip: "+IPUtils.getIpAddr(httpRequest));
-        System.out.println("authHeader: "+authHeader);
+        // System.out.println(httpRequest.getRequestURL().toString()+", current req ip: "+IPUtils.getIpAddr(httpRequest));
+        // System.out.println("authHeader: "+authHeader);
 
         if (authHeader == null || !authHeader.startsWith(AbstractTokenUtil.TOKEN_TYPE_BEARER)) {
             chain.doFilter(request, response);
