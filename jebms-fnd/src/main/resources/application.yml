@@ -52,3 +52,7 @@ pagehelper:
     params: count=countSql
 
 hystrix.command.default.execution.isolation.strategy: SEMAPHORE
+#请求处理的超时时间  
+ribbon.ReadTimeout: 120000  
+#请求连接的超时时间  
+ribbon.ConnectTimeout: 30000
