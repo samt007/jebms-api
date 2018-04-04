@@ -42,7 +42,7 @@ public class AuthenticationTokenFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String authHeader = httpRequest.getHeader(TOKEN_HEADER);
         
-        System.out.print("current req ip: "+IPUtils.getIpAddr(httpRequest));
+        System.out.println(httpRequest.getRequestURL().toString()+", current req ip: "+IPUtils.getIpAddr(httpRequest));
 
         if (authHeader == null || !authHeader.startsWith(AbstractTokenUtil.TOKEN_TYPE_BEARER)) {
             chain.doFilter(request, response);

@@ -5,7 +5,6 @@ import feign.RequestTemplate;
 
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
 import com.jebms.comm.utils.RequestUtil;
 import com.jebms.comm.utils.IPUtils;
 import com.jebms.comm.utils.TypeConverter;
