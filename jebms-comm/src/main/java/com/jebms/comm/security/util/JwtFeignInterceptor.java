@@ -19,12 +19,12 @@ public class JwtFeignInterceptor implements RequestInterceptor {
 
         if (!template.headers().containsKey(key)) {
             String currentToken = UserUtil.getCurrentToken();
-            System.out.println(JSON.toJSONString(UserUtil.getCurrentUser()));
-            System.out.println(JSON.toJSONString(UserUtil.getCurrentToken()));
+            //System.out.println(JSON.toJSONString(UserUtil.getCurrentUser()));
+            //System.out.println(JSON.toJSONString(UserUtil.getCurrentToken()));
             if (!TypeConverter.isEmpty(currentToken)){
                 template.header(key, currentToken);
                 template.header("X-Forwarded-For", IPUtils.getIpAddr(RequestUtil.getHttpServletRequest()));
-                System.out.println("add the token for feign:"+currentToken+",IP:"+IPUtils.getIpAddr(RequestUtil.getHttpServletRequest()));
+                //System.out.println("add the token for feign:"+currentToken+",IP:"+IPUtils.getIpAddr(RequestUtil.getHttpServletRequest()));
             }
         }
     }

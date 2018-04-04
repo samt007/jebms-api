@@ -11,8 +11,15 @@ spring:
 
 zuul:
     routes:
-        producer.path: /jebms/erp/**
-        producer.serviceId: jebms-erp
+        fnd:
+            path: /jebms/fnd/**
+            serviceId: jebms-fnd
+        erp:
+            path: /jebms/erp/**
+            serviceId: jebms-fnd
+        per:
+            path: /jebms/per/**
+            serviceId: jebms-per
 
 eureka:
     instance:
