@@ -26,7 +26,7 @@ import com.jebms.fnd.service.RGService;
  * Describe: LOV/RG功能处理
  */
 @Controller
-@RequestMapping(value = "/fnd")
+@RequestMapping(value = "/")
 @SuppressWarnings("rawtypes")
 @Api(value = "Record Group",description="记录组接口，通常是被Lov和List所用！")
 public class RGController  extends BaseController  {

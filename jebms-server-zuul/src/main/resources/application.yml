@@ -16,7 +16,7 @@ zuul:
             serviceId: jebms-fnd
         erp:
             path: /jebms/erp/**
-            serviceId: jebms-fnd
+            serviceId: jebms-erp
         per:
             path: /jebms/per/**
             serviceId: jebms-per

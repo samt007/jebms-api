@@ -27,7 +27,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/worklog")
+@RequestMapping("/worklog")
 @Api(value = "工作日志管理", description = "工作日志管理")
 @SuppressWarnings("rawtypes")
 public class FndWorklogController extends BaseController{

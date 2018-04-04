@@ -26,7 +26,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/per/workgroup")
+@RequestMapping("/workgroup")
 @Api(value = "工作组管理", description = "工作组管理")
 @SuppressWarnings("rawtypes")
 public class PerWorkgroupController extends BaseController{

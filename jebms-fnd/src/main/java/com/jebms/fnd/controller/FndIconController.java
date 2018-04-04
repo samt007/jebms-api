@@ -25,7 +25,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/icon")
+@RequestMapping("/icon")
 @Api(value = "图标管理", description = "图标管理")
 @SuppressWarnings("rawtypes")
 public class FndIconController extends BaseController{

@@ -25,7 +25,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/function")
+@RequestMapping("/function")
 @Api(value = "功能管理", description = "功能管理")
 @SuppressWarnings("rawtypes")
 public class FndFunctionController extends BaseController{

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Validated
 @RestController
-@RequestMapping("/erp/test")
+@RequestMapping("/test")
 @Api(value = "测试", description = "测试")
 @SuppressWarnings("rawtypes")
 public class TestController extends BaseController{

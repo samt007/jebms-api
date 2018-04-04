@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Validated
 @RestController
-@RequestMapping("/erp/worklog/")
+@RequestMapping("/worklog/")
 @Api(value = "工作日志同步API", description = "工作日志")
 @SuppressWarnings({"rawtypes","unchecked"})
 public class WorklogController extends BaseController{

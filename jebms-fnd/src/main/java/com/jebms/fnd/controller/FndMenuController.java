@@ -26,7 +26,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/menu")
+@RequestMapping("/menu")
 @Api(value = "菜单管理", description = "菜单管理")
 @SuppressWarnings("rawtypes")
 public class FndMenuController extends BaseController{

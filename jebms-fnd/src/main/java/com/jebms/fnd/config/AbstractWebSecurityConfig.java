@@ -73,7 +73,7 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         security
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/fnd/auth/token").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.GET, "/webjars/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()

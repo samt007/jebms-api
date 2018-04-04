@@ -26,7 +26,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/resp")
+@RequestMapping("/resp")
 @Api(value = "职责管理", description = "职责管理")
 @SuppressWarnings("rawtypes")
 public class FndRespController extends BaseController{

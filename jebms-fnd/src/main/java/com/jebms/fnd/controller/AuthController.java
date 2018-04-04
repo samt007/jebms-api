@@ -36,7 +36,7 @@ import java.util.Map;
  * @author samt007@qq.com
  */
 @RestController
-@RequestMapping("/fnd/auth")
+@RequestMapping("/auth")
 @Api(value = "登录接口",description="登录接口，获取或者更新Token调用")
 public class AuthController {
 	

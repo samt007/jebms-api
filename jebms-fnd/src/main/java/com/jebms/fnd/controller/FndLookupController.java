@@ -26,7 +26,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/lookup")
+@RequestMapping("/lookup")
 @Api(value = "数据字典管理", description = "数据字典管理")
 @SuppressWarnings("rawtypes")
 public class FndLookupController extends BaseController{

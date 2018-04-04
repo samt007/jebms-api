@@ -4,7 +4,7 @@ server:
         max-threads: 1000
         min-spare-threads: 30
     port: 8081
-    context-path: /jebms
+    context-path: /jebms/erp
     ipAddress: 192.168.99.100
 
 # oracle

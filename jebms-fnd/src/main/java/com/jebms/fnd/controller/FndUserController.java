@@ -30,7 +30,7 @@ import javax.validation.Valid;
  */
 @Validated
 @RestController
-@RequestMapping("/fnd/user")
+@RequestMapping("/user")
 @Api(value = "用户管理", description = "用户管理")
 @SuppressWarnings("rawtypes")
 public class FndUserController extends BaseController{

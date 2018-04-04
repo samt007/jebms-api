@@ -31,7 +31,7 @@ import com.jebms.fnd.service.InteractService;
  */
 
 @Controller
-@RequestMapping(value = "/fnd/irr")
+@RequestMapping(value = "/irr")
 @Api(value = "交互式报表API", description = "交互式报表管理")
 @SuppressWarnings("rawtypes")
 public class InteractController extends BaseController {
