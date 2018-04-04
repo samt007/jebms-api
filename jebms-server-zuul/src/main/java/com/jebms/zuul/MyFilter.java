@@ -34,6 +34,7 @@ public class MyFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
         log.info("ip: "+this.getIpAddr(request));
+        log.info("Authorization: "+request.getHeader("Authorization"));
         /*Object accessToken = request.getParameter("token");
         if(accessToken == null) {
             log.warn("token is empty");
