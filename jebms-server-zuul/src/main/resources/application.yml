@@ -1,7 +1,7 @@
 server:
     port: 8002
     # 由于用了docker部署整个微服务，所以要配置docker宿主的ip地址！
-    ipAddress: 192.168.99.100
+    ipAddress: 192.168.0.48
 
 spring:
     # 环境 dev|test|pro
@@ -11,6 +11,8 @@ spring:
         name: jebms-server-zuul
 
 zuul:
+    # 请求路径需要添加匹配path
+    stripPrefix: false
     host:
       socket-timeout-millis: 60000
       connect-timeout-millis: 60000
