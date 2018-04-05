@@ -20,13 +20,13 @@ zuul:
     routes:
         fnd:
             path: /jebms/fnd/**
-            serviceId: jebms-fnd/jebms/fnd
+            serviceId: jebms-fnd
         erp:
             path: /jebms/erp/**
-            serviceId: jebms-erp/jebms/erp
+            serviceId: jebms-erp
         per:
             path: /jebms/per/**
-            serviceId: jebms-per/jebms/per
+            serviceId: jebms-per
 
 eureka:
     instance:
