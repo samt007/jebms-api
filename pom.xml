@@ -13,43 +13,43 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-		<module>jebms-comm</module>            <!--核心Comm模块 -->
-		<module>jebms-basic-support</module> <!--核心基础支撑模块 -->
-		<module>jebms-server-eureka</module> <!--Eureka服务治理模块 -->
-		<module>jebms-server-zuul</module>     <!--zuul动态路由模块 -->
-		<module>jebms-fnd</module>                 <!--核心Fnd模块 -->
-		<module>jebms-per</module>                 <!--人力资源per模块 -->
-		<module>jebms-erp</module>                 <!--和erp对接模块 -->
+        <module>jebms-comm</module>            <!--核心Comm模块 -->
+        <module>jebms-basic-support</module> <!--核心基础支撑模块 -->
+        <module>jebms-server-eureka</module> <!--Eureka服务治理模块 -->
+        <module>jebms-server-zuul</module>     <!--zuul动态路由模块 -->
+        <module>jebms-fnd</module>                 <!--核心Fnd模块 -->
+        <module>jebms-per</module>                 <!--人力资源per模块 -->
+        <module>jebms-erp</module>                 <!--和erp对接模块 -->
     </modules>
 
     <properties>
-		<!-- main version setting -->
-		<activiti.version>5.21.0</activiti.version>
-		<!-- platform setting -->
-		<com.jebms.groupId>com.jebms</com.jebms.groupId>
-		<com.jebms.version>1.0.0-SNAPSHOT</com.jebms.version>
-		<com.jebms.inceptionYear>2017-2019</com.jebms.inceptionYear>
-		<validator-api.version>1.1.0.Final</validator-api.version>
+        <!-- main version setting -->
+        <activiti.version>5.21.0</activiti.version>
+        <!-- platform setting -->
+        <com.jebms.groupId>com.jebms</com.jebms.groupId>
+        <com.jebms.version>1.0.0-SNAPSHOT</com.jebms.version>
+        <com.jebms.inceptionYear>2017-2019</com.jebms.inceptionYear>
+        <validator-api.version>1.1.0.Final</validator-api.version>
         <!--spring-boot默认jdk版本是1.6，手动指定为1.8-->
-		<java.version>1.8</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
-		<mysql.version>5.1.43</mysql.version>
-		<druid.version>1.0.28</druid.version>
-		<quartz.version>2.3.0</quartz.version>
-		<swagger.version>2.6.1</swagger.version>
-		<commons.lang.version>2.6</commons.lang.version>
-		<commons.fileupload.version>1.3.1</commons.fileupload.version>
-		<commons.io.version>2.5</commons.io.version>
-		<commons.codec.version>1.10</commons.codec.version>
-		<commons.configuration.version>1.10</commons.configuration.version>
-		<fastjson.version>1.2.30</fastjson.version>
-		<aliyun.oss.version>2.5.0</aliyun.oss.version>
-		<velocity.version>1.7</velocity.version>
-		<jwt.version>0.6.0</jwt.version>
-		<pagehelper.version>1.1.3</pagehelper.version>
-		<spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
+        <mysql.version>5.1.43</mysql.version>
+        <druid.version>1.0.28</druid.version>
+        <quartz.version>2.3.0</quartz.version>
+        <swagger.version>2.6.1</swagger.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.fileupload.version>1.3.1</commons.fileupload.version>
+        <commons.io.version>2.5</commons.io.version>
+        <commons.codec.version>1.10</commons.codec.version>
+        <commons.configuration.version>1.10</commons.configuration.version>
+        <fastjson.version>1.2.30</fastjson.version>
+        <aliyun.oss.version>2.5.0</aliyun.oss.version>
+        <velocity.version>1.7</velocity.version>
+        <jwt.version>0.6.0</jwt.version>
+        <pagehelper.version>1.1.3</pagehelper.version>
+        <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
     </properties>
 
     <parent>
@@ -62,10 +62,10 @@
 
     <dependencies>
     
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -74,26 +74,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -106,82 +106,82 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/cn.easyproject/ojdbc7 -->
-		<dependency>
-		    <groupId>cn.easyproject</groupId>
-		    <artifactId>ojdbc7</artifactId>
-		    <version>12.1.0.2.0</version>
-		</dependency>
+        <dependency>
+            <groupId>cn.easyproject</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.2.0</version>
+        </dependency>
 
         <!--mybatis-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>${mybatis.spring.boot.version}</version>
+            <version>${mybatis.spring.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-			<version>${druid.version}</version>
+            <version>${druid.version}</version>
         </dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>${quartz.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>c3p0</artifactId>
-					<groupId>c3p0</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>c3p0</artifactId>
+                    <groupId>c3p0</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         
         <!-- Swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>${commons.lang.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
         <!-- 文件上传 -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-			<version>${commons.fileupload.version}</version>
+            <version>${commons.fileupload.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-			<version>${commons.io.version}</version>
+            <version>${commons.io.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-			<version>${commons.codec.version}</version>
+            <version>${commons.codec.version}</version>
         </dependency>
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>${commons.configuration.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>${commons.configuration.version}</version>
+        </dependency>
         <!-- 格式化对象，方便输出日志 阿里巴巴将对象转换成json -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-			<version>${fastjson.version}</version>
+            <version>${fastjson.version}</version>
         </dependency>
         <!--mapper-->
         <dependency>
@@ -193,49 +193,49 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>${pagehelper.version}</version>
+            <version>${pagehelper.version}</version>
         </dependency>
         
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>${jwt.version}</version>
-		</dependency>
-		
-		<!-- Spring Boot Dubbo 依赖 -->
-		<dependency>
-			<groupId>io.dubbo.springboot</groupId>
-			<artifactId>spring-boot-starter-dubbo</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<!-- guava -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>23.3-jre</version>
-		</dependency>
-		
-		<!-- 代码生成器所需jar -->
-		<dependency>
-			<artifactId>velocity</artifactId>
-			<groupId>org.apache.velocity</groupId>
-			<version>${velocity.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        
+        <!-- Spring Boot Dubbo 依赖 -->
+        <dependency>
+            <groupId>io.dubbo.springboot</groupId>
+            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>23.3-jre</version>
+        </dependency>
+        
+        <!-- 代码生成器所需jar -->
+        <dependency>
+            <artifactId>velocity</artifactId>
+            <groupId>org.apache.velocity</groupId>
+            <version>${velocity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.7</version>
         </dependency>
-		<dependency>
-			<groupId>org.wuwz</groupId>
-			<artifactId>ExcelKit</artifactId>
-			<version>1.1</version>
-		</dependency>
+        <dependency>
+            <groupId>org.wuwz</groupId>
+            <artifactId>ExcelKit</artifactId>
+            <version>1.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -264,22 +264,22 @@
             <artifactId>jebms-comm</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-	
+    
         <dependency>
             <groupId>com.jebms</groupId>
             <artifactId>jebms-basic-support</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-feign</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
         
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
         
     </dependencies>
     
@@ -294,5 +294,92 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <profileActive>pro</profileActive>
+            </properties>
+        </profile>
+    </profiles>
+    
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>application.yml</exclude>
+                    <exclude>application-dev.yml</exclude>
+                    <exclude>application-test.yml</exclude>
+                    <exclude>application-pro.yml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application.yml</include>
+                    <include>application-${profileActive}.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <configuration>  
+                    <source>${java.version}</source>  
+                    <target>${java.version}</target>  
+                </configuration>  
+            </plugin>  
+        </plugins>
+    </build>
+    
 </project>
