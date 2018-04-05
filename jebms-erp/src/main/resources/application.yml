@@ -5,7 +5,6 @@ server:
         min-spare-threads: 30
     port: 8081
     context-path: /jebms/erp
-    ipAddress: 192.168.0.48
 
 # oracle
 spring:
@@ -27,11 +26,11 @@ spring:
 eureka:
     instance:
         prefer-ip-address: true
-        ip-address: ${server.ipAddress}
-        instance-id: ${server.ipAddress}:${server.port}
-        hostname: ${server.ipAddress}
+        ip-address: ${docker.host.ipAddress}
+        instance-id: ${docker.host.ipAddress}:${server.port}
+        hostname: ${docker.host.ipAddress}
     client:
-        service-url.defaultZone: http://${server.ipAddress}:8001/eureka/
+        service-url.defaultZone: http://${docker.host.ipAddress}:8001/eureka/
         eureka-server-read-timeout-seconds: 30
 
 # Mybatis配置

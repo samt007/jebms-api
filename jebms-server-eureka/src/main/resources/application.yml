@@ -1,6 +1,5 @@
 server:
     port: 8001
-    ipAddress: 192.168.0.48
 
 spring:
     # 环境 dev|test|pro
@@ -12,14 +11,14 @@ spring:
 eureka:
     instance:
         prefer-ip-address: true
-        ip-address: ${server.ipAddress}
-        instance-id: ${server.ipAddress}:${server.port}
-        hostname: ${server.ipAddress}
+        ip-address: ${docker.host.ipAddress}
+        instance-id: ${docker.host.ipAddress}:${server.port}
+        hostname: ${docker.host.ipAddress}
     client:
         register-with-eureka: false
         fetch-registry: false
-        service-url.defaultZone: http://${server.ipAddress}:8001/eureka/
+        service-url.defaultZone: http://${docker.host.ipAddress}:8001/eureka/
         eureka-server-read-timeout-seconds: 30
     server:
         enable-self-preservation: false
-        eviction-interval-timer-in-ms: 4000
+        eviction-interval-timer-in-ms: 30000
