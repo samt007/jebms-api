@@ -11,8 +11,8 @@ spring:
         name: jebms-server-zuul
 
 zuul:
-    # 请求路径需要添加匹配path
-    stripPrefix: false
+    # 请求路径不需要添加所匹配path
+    stripPrefix: true
     host:
       socket-timeout-millis: 60000
       connect-timeout-millis: 60000
@@ -20,13 +20,13 @@ zuul:
     routes:
         fnd:
             path: /jebms/fnd/**
-            serviceId: jebms-fnd
+            serviceId: jebms-fnd/jebms/fnd
         erp:
             path: /jebms/erp/**
-            serviceId: jebms-erp
+            serviceId: jebms-erp/jebms/erp
         per:
             path: /jebms/per/**
-            serviceId: jebms-per
+            serviceId: jebms-per/jebms/per
 
 eureka:
     instance:
