@@ -1,3 +1,6 @@
+# 配置docker宿主的ip地址
+docker.host.ipAddress: 192.168.99.100
+
 spring:
     datasource:
         url: jdbc:oracle:thin:@192.168.139.21:1521:PROD2

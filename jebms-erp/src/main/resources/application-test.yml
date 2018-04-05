@@ -1,10 +1,14 @@
+# 配置docker宿主的ip地址
+docker.host.ipAddress: 192.168.0.48
+
 spring:
     datasource:
-        url: jdbc:oracle:thin:@192.168.139.9:1531:VIS
-#        url: jdbc:oracle:thin:@192.168.139.21:1521:PROD2
-        username: apps
-#        password: iphone
-        password: shouji
+        url: jdbc:oracle:thin:@192.168.139.21:1521:PROD2
+        username: XYG_ALWEB
+        password: XYG_ALWEB
+        # url: jdbc:oracle:thin:@192.168.139.9:1531:VIS
+        # username: apps
+        # password: shouji
         #连接池的配置信息
         initialSize: 10
         minIdle: 10
@@ -17,7 +21,7 @@ spring:
         testOnBorrow: false
         testOnReturn: false
         poolPreparedStatements: true
-#        maxPoolPreparedStatementPerConnectionSize: 20
+        # maxPoolPreparedStatementPerConnectionSize: 20
 
     redis:
       database: 10

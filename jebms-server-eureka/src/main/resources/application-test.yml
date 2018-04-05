@@ -1,0 +1,2 @@
+# 配置docker宿主的ip地址
+docker.host.ipAddress: 192.168.0.48

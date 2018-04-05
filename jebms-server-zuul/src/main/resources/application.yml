@@ -1,7 +1,5 @@
 server:
     port: 8002
-    # 由于用了docker部署整个微服务，所以要配置docker宿主的ip地址！
-    ipAddress: 192.168.0.48
 
 spring:
     # 环境 dev|test|pro
@@ -33,11 +31,11 @@ zuul:
 eureka:
     instance:
         prefer-ip-address: true
-        ip-address: ${server.ipAddress}
-        instance-id: ${server.ipAddress}:${server.port}
-        hostname: ${server.ipAddress}
+        ip-address: ${docker.host.ipAddress}
+        instance-id: ${docker.host.ipAddress}:${server.port}
+        hostname: ${docker.host.ipAddress}
     client:
-        serviceUrl.defaultZone: http://${server.ipAddress}:8001/eureka/
+        serviceUrl.defaultZone: http://${docker.host.ipAddress}:8001/eureka/
         eureka-server-read-timeout-seconds: 30
 
 ribbon:
