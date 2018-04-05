@@ -1,13 +1,9 @@
 package com.jebms.zuul;
 
 import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
-
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Component
 public class MyFilter extends ZuulFilter {
 
 	public static final String TOKEN_HEADER = "Authorization";
@@ -29,9 +25,9 @@ public class MyFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-        ctx.addZuulRequestHeader(TOKEN_HEADER, request.getHeader(TOKEN_HEADER));
+        //RequestContext ctx = RequestContext.getCurrentContext();
+        //HttpServletRequest request = ctx.getRequest();
+        //ctx.addZuulRequestHeader(TOKEN_HEADER, request.getHeader(TOKEN_HEADER));
         //log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
         //log.info("ip: "+this.getIpAddr(request));
         //log.info("Authorization: "+request.getHeader(TOKEN_HEADER));

@@ -11,8 +11,7 @@ spring:
         name: jebms-server-zuul
 
 zuul:
-    # 请求路径需要添加所匹配path
-    stripPrefix: false
+    sensitiveHeaders:  # 使用空来覆盖默认值
     host:
       socket-timeout-millis: 60000
       connect-timeout-millis: 60000
@@ -21,7 +20,7 @@ zuul:
         fnd:
             path: /jebms/fnd/**
             serviceId: jebms-fnd
-            stripPrefix: false
+            stripPrefix: false # 请求路径需要添加所匹配path
         erp:
             path: /jebms/erp/**
             serviceId: jebms-erp
