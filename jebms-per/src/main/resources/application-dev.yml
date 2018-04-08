@@ -37,7 +37,3 @@ security:
     secret: k09BQnaF
     tokenExpiration: 604800 #7Days 604800
     expiration: 86400 #1Day
-
-global:
-  edi:
-     erpEdi: 

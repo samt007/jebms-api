@@ -76,7 +76,7 @@ public class AuthController {
         //产生登录信息
         AuthUser authUser=(AuthUser) userDetails;//认证的用户
         //System.out.println("userDetails:"+authUser.getNicename()+",userId:"+authUser.getId());
-        //System.out.println(new Gson().toJson(userDetails));
+        //System.out.println("20180407userDetails: "+new Gson().toJson(userDetails));
     	FndLogin login=new FndLogin();
     	login.setUserId(authUser.getId());
     	login.setStartDate(new Date());
