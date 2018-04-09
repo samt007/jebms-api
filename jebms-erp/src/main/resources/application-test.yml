@@ -1,5 +1,5 @@
-# 配置docker宿主的ip地址
-docker.host.ipAddress: 192.168.0.48
+# 配置eureka的ip地址
+eureka.ipAddress: 192.168.0.48
 
 spring:
     datasource:

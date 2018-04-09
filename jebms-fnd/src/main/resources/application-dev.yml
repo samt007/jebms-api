@@ -1,11 +1,14 @@
-# 配置docker宿主的ip地址
-docker.host.ipAddress: 192.168.0.48
+# 配置eureka的ip地址
+eureka.ipAddress: 127.0.0.1
 
 spring:
     datasource:
-        url: jdbc:mysql://192.168.68.1:3306/jebms_db?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-        username: bowen
-        password: bowen.890
+        #url: jdbc:mysql://192.168.68.1:3306/jebms_db?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+        #username: bowen
+        #password: bowen.890
+        url: jdbc:mysql://192.168.88.31:3306/jebms_db?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: erp
         #连接池的配置信息
         initialSize: 10
         minIdle: 10
