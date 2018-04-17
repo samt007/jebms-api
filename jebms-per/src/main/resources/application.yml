@@ -3,7 +3,7 @@ server:
     tomcat:
         max-threads: 1000
         min-spare-threads: 30
-    port: 8082
+    port: 8282
     context-path: /jebms/per
 
 # mysql
@@ -30,7 +30,7 @@ eureka:
         instance-id: ${eureka.ipAddress}:${server.port}
         hostname: ${eureka.ipAddress}
     client:
-        service-url.defaultZone: http://${eureka.ipAddress}:8001/eureka/
+        service-url.defaultZone: http://${eureka.ipAddress}:8201/eureka/
         eureka-server-read-timeout-seconds: 30
 
 # Mybatis配置

@@ -1,5 +1,5 @@
 server:
-    port: 8002
+    port: 8202
 
 spring:
     # 环境 dev|test|pro
@@ -30,9 +30,9 @@ zuul:
 
 #禁用Eureka对Ribbon服务实例的维护实现。
 ribbon.eureka.enabled: false
-jebms-fnd.ribbon.listOfServers: ${eureka.ipAddress}:8080
-jebms-erp.ribbon.listOfServers: ${eureka.ipAddress}:8081
-jebms-per.ribbon.listOfServers: ${eureka.ipAddress}:8082
+jebms-fnd.ribbon.listOfServers: ${eureka.ipAddress}:8280
+jebms-erp.ribbon.listOfServers: ${eureka.ipAddress}:8281
+jebms-per.ribbon.listOfServers: ${eureka.ipAddress}:8282
 
 eureka:
     instance:
@@ -41,7 +41,7 @@ eureka:
         instance-id: ${eureka.ipAddress}:${server.port}
         hostname: ${eureka.ipAddress}
     client:
-        serviceUrl.defaultZone: http://${eureka.ipAddress}:8001/eureka/
+        serviceUrl.defaultZone: http://${eureka.ipAddress}:8201/eureka/
         eureka-server-read-timeout-seconds: 30
 
 ribbon:

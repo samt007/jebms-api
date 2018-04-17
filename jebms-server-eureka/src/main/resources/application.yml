@@ -1,5 +1,5 @@
 server:
-    port: 8001
+    port: 8201
 
 spring:
     # 环境 dev|test|pro
@@ -17,7 +17,7 @@ eureka:
     client:
         register-with-eureka: false
         fetch-registry: false
-        service-url.defaultZone: http://${eureka.ipAddress}:8001/eureka/
+        service-url.defaultZone: http://${eureka.ipAddress}:8201/eureka/
         eureka-server-read-timeout-seconds: 60
     server:
         enable-self-preservation: false

@@ -3,7 +3,7 @@ server:
     tomcat:
         max-threads: 1000
         min-spare-threads: 30
-    port: 8080
+    port: 8280
     context-path: /jebms/fnd
 
 # mysql
@@ -30,7 +30,7 @@ eureka:
         instance-id: ${eureka.ipAddress}:${server.port}
         hostname: ${eureka.ipAddress}
     client:
-        service-url.defaultZone: http://${eureka.ipAddress}:8001/eureka/
+        service-url.defaultZone: http://${eureka.ipAddress}:8201/eureka/
         eureka-server-read-timeout-seconds: 60
 
 # Mybatis配置
@@ -57,6 +57,4 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 100000
 ribbon.ReadTimeout: 120000  
 #请求连接的超时时间  
 ribbon.ConnectTimeout: 30000
-#取消Feign Hystrix熔断功能
-#feign.hystrix.enabled: false
 
