@@ -28,6 +28,12 @@ zuul:
             serviceId: jebms-per
             stripPrefix: false
 
+#禁用Eureka对Ribbon服务实例的维护实现。
+ribbon.eureka.enabled: false
+jebms-fnd.ribbon.listOfServers: ${eureka.ipAddress}:8080
+jebms-erp.ribbon.listOfServers: ${eureka.ipAddress}:8081
+jebms-per.ribbon.listOfServers: ${eureka.ipAddress}:8082
+
 eureka:
     instance:
         prefer-ip-address: true
@@ -40,12 +46,8 @@ eureka:
 
 ribbon:
     ReadTimeout: 60000  
-    ConnectTimeout: 60000 
+    ConnectTimeout: 60000
 
-hystrix:
-    command:
-        default:
-            execution:
-                isolation:
-                    thread:
-                        timeoutInMilliseconds: 60000 
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 100000
+hystrix.command.default.execution.timeout.enabled: false 
+

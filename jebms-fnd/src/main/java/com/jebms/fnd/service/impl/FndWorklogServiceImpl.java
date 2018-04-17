@@ -78,7 +78,7 @@ public class FndWorklogServiceImpl  extends DevJdbcDaoSupport implements FndWork
     }
     
     @Transactional(readOnly = false)
-    public ResultEntity insertHeader(FndWorklogHeaderVO record,AuthUser user, HttpServletRequest request) {
+    public ResultEntity insertHeader(FndWorklogHeaderVO record,AuthUser user, HttpServletRequest request) throws Exception {
     	record.setWhoInsert(user);
     	if(headerDao.insert(record)==1){
     		record=this.selectHeaderVOByPK(record.getId(),user.getLanguage());

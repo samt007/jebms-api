@@ -23,7 +23,7 @@ public interface FndWorklogService {
 
     public FndWorklogHeaderVO selectHeaderVOByPK(Long id,String lang) ;
     
-    public ResultEntity insertHeader(FndWorklogHeaderVO record,AuthUser user, HttpServletRequest request) ;
+    public ResultEntity insertHeader(FndWorklogHeaderVO record,AuthUser user, HttpServletRequest request) throws Exception ;
     
     public void ediHeaders(String ediType, FndWorklogHeaderVO record, AuthUser user, HttpServletRequest request) throws Exception;
 

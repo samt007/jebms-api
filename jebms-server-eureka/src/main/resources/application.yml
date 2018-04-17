@@ -18,7 +18,7 @@ eureka:
         register-with-eureka: false
         fetch-registry: false
         service-url.defaultZone: http://${eureka.ipAddress}:8001/eureka/
-        eureka-server-read-timeout-seconds: 30
+        eureka-server-read-timeout-seconds: 60
     server:
         enable-self-preservation: false
-        eviction-interval-timer-in-ms: 30000
+

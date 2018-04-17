@@ -59,7 +59,7 @@ public class FndWorklogController extends BaseController{
     @PreAuthorize("hasAuthority('fnd:worklog:edit')")
     @PostMapping(value = "/insertHeader")
     @ApiOperation(value = "新增工作日志头")
-    public ResultEntity insertHeader(@Valid @RequestBody FndWorklogHeaderVO record) {
+    public ResultEntity insertHeader(@Valid @RequestBody FndWorklogHeaderVO record) throws Exception {
         return worklogService.insertHeader(record,this.authUser,this.request);
     }
 
