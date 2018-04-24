@@ -42,11 +42,12 @@ public class FndWorklogController extends BaseController{
     @ApiOperation(value = "工作日志列表")
     public ResultEntity getPageHeader(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("workItem", requestJson.getString("workItem"));
-    	searchInfo.getConditionMap().put("workOwnerPid", requestJson.getString("workOwnerPid"));
-    	searchInfo.getConditionMap().put("actualStartDateF", requestJson.getString("actualStartDateF"));
-    	searchInfo.getConditionMap().put("actualStartDateT", requestJson.getString("actualStartDateT"));
-        return worklogService.selectForPageHeader(searchInfo);
+    	searchInfo.putConditionMap("workItem", requestJson.getString("workItem")).andSqlCondition("fwh.work_item","workItem");
+    	searchInfo.putConditionMap("workOwnerPid", requestJson.getString("workOwnerPid")).andSqlCondition("fwh.work_owner_pid","workOwnerPid");
+    	searchInfo.putConditionMap("actualStartDateF", TypeConverter.str2Timestamp(requestJson.getString("actualStartDateF")))
+    					.putConditionMap("actualStartDateT", TypeConverter.str2Timestamp(requestJson.getString("actualStartDateT")))
+    					.andSqlCondition("fwh.actual_start_date","actualStartDateF","actualStartDateT");
+    	return worklogService.selectForPageHeader(searchInfo);
     }
 
     //@PreAuthorize("hasAuthority('fnd:worklog:view')")
@@ -86,8 +87,8 @@ public class FndWorklogController extends BaseController{
     @ApiOperation(value = "工作日志行列表")
     public ResultEntity getPageLine(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("headerId", requestJson.getString("headerId"));
-    	searchInfo.getConditionMap().put("lineContent", requestJson.getString("lineContent"));
+    	searchInfo.putConditionMap("headerId", requestJson.getString("headerId")).andSqlCondition("fwl.header_id","headerId");
+    	searchInfo.putConditionMap("lineContent", requestJson.getString("lineContent")).andSqlCondition("fwl.line_content","lineContent");
         return worklogService.selectForPageLine(searchInfo);
     }
 

@@ -14,7 +14,6 @@ import com.jebms.comm.entity.ResultEntity;
 import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
 import com.jebms.comm.security.model.AuthUser;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.fnd.dao.FndFunctionDao;
 import com.jebms.fnd.dao.FndFunctionTlDao;
 import com.jebms.fnd.dao.FndMenuHeaderDao;
@@ -114,11 +113,6 @@ public class SystemServiceImpl implements SystemService {
     
     // 用户管理
 	public ResultEntity selectForPageUser(SearchInfo searchInfo) throws Exception {
-    	//首先处理复杂的查询条件。如果还有更加特殊的，直接Append进来即可。
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fu.username","username"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndUserVO> pageList = userDao.selectForPage(searchInfo);
         PageInfo<FndUserVO> pageInfo = new PageInfo<>(pageList);
@@ -166,11 +160,6 @@ public class SystemServiceImpl implements SystemService {
     
     // 用户职责管理
 	public ResultEntity selectForPageUserResp(SearchInfo searchInfo) throws Exception {
-    	//首先处理复杂的查询条件。如果还有更加特殊的，直接Append进来即可。
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fur.user_id","userId"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndUserRespVO> pageList = userRespDao.selectForPage(searchInfo);
         PageInfo<FndUserRespVO> pageInfo = new PageInfo<>(pageList);
@@ -347,10 +336,6 @@ public class SystemServiceImpl implements SystemService {
     
     //增删改Menu头
 	public ResultEntity selectForPageMenuHeader(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"customer_name","customerName"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndMenuHeaderVO> pageList = menuHeaderDao.selectForPage(searchInfo);
         PageInfo<FndMenuHeaderVO> pageInfo = new PageInfo<>(pageList);
@@ -430,10 +415,6 @@ public class SystemServiceImpl implements SystemService {
     
     //增删改Menu行
 	public ResultEntity selectForPageMenuLine(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fml.menu_id","menuId"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndMenuLineVO> pageList = menuLineDao.selectForPage(searchInfo);
         PageInfo<FndMenuLineVO> pageInfo = new PageInfo<>(pageList);
@@ -513,10 +494,6 @@ public class SystemServiceImpl implements SystemService {
 
     //增删改Function
 	public ResultEntity selectForPageFunction(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fml.menu_id","menu_id"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndFunctionVO> pageList = functionDao.selectForPage(searchInfo);
         PageInfo<FndFunctionVO> pageInfo = new PageInfo<>(pageList);
@@ -595,10 +572,6 @@ public class SystemServiceImpl implements SystemService {
 
     //增删改Resp行
 	public ResultEntity selectForPageResp(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fur.user_id","user_id"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndRespVO> pageList = respDao.selectForPage(searchInfo);
         PageInfo<FndRespVO> pageInfo = new PageInfo<>(pageList);

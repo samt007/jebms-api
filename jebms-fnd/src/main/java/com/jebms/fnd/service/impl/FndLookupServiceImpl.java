@@ -10,7 +10,6 @@ import com.jebms.comm.entity.ResultEntity;
 import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
 import com.jebms.comm.security.model.AuthUser;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.fnd.dao.FndLookupTypeDao;
 import com.jebms.fnd.dao.FndLookupTypeTlDao;
 import com.jebms.fnd.dao.FndLookupValueDao;
@@ -47,10 +46,6 @@ public class FndLookupServiceImpl implements FndLookupService {
 
     //增删改Lookup头
 	public ResultEntity selectForPageLookupType(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"flt.lookup_type","lookupType"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndLookupTypeVO> pageList = lookupTypeDao.selectForPage(searchInfo);
         PageInfo<FndLookupTypeVO> pageInfo = new PageInfo<>(pageList);
@@ -128,11 +123,6 @@ public class FndLookupServiceImpl implements FndLookupService {
     
     //增删改Lookup行
 	public ResultEntity selectForPageLookupValue(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"flv.appl_id","applId"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"flv.lookup_type","lookupType"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndLookupValue> pageList = lookupValueDao.selectForPage(searchInfo);
         PageInfo<FndLookupValue> pageInfo = new PageInfo<>(pageList);

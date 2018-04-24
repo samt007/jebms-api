@@ -47,7 +47,7 @@ public class FndLookupController extends BaseController{
     @ApiOperation(value = "数据字典头列表")
     public ResultEntity getPageLookupType(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("lookupType", requestJson.getString("lookupType"));
+    	searchInfo.putConditionMap("lookupType", requestJson.getString("lookupType")).andSqlCondition("flt.lookup_type","lookupType");
         return lookupService.selectForPageLookupType(searchInfo);
     }
 
@@ -117,8 +117,8 @@ public class FndLookupController extends BaseController{
     @ApiOperation(value = "数据字典行列表")
     public ResultEntity getPageLookupValue(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("applId", requestJson.getString("applId"));
-    	searchInfo.getConditionMap().put("lookupType", requestJson.getString("lookupType"));
+    	searchInfo.putConditionMap("applId", requestJson.getString("applId")).andSqlCondition("flv.appl_id","applId");
+    	searchInfo.putConditionMap("lookupType", requestJson.getString("lookupType")).andSqlCondition("flv.lookup_type","lookupType");
         return lookupService.selectForPageLookupValue(searchInfo);
     }
 

@@ -48,7 +48,7 @@ public class FndUserController extends BaseController{
     @ApiOperation(value = "用户列表")
     public ResultEntity getPageUser(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("username", requestJson.getString("username"));
+    	searchInfo.putConditionMap("username", requestJson.getString("username")).andSqlCondition("fu.username","username");
         return systemService.selectForPageUser(searchInfo);
     }
     
@@ -99,7 +99,7 @@ public class FndUserController extends BaseController{
     @ApiOperation(value = "用户职责列表")
     public ResultEntity getPageUserResp(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("userId", requestJson.getString("userId"));
+    	searchInfo.putConditionMap("userId", requestJson.getString("userId")).andSqlCondition("fur.user_id","userId");
         return systemService.selectForPageUserResp(searchInfo);
     }
     

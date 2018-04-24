@@ -11,7 +11,6 @@ import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
 import com.jebms.comm.security.model.AuthUser;
 import com.jebms.comm.springjdbc.DevJdbcDaoSupport;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.per.dao.PerWorkgroupDao;
 import com.jebms.per.dao.PerWorkgroupEmpDao;
 import com.jebms.per.entity.PerWorkgroupVO;
@@ -45,11 +44,6 @@ public class PerWorkgroupServiceImpl  extends DevJdbcDaoSupport implements PerWo
     
     //增删改头
 	public ResultEntity selectForPageWorkgroup(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwh.work_item","workItem"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwh.work_owner_pid","workOwnerPid"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwh.actual_start_date","actualStartDateF","actualStartDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<PerWorkgroupVO> pageList = groupDao.selectForPage(searchInfo);
         PageInfo<PerWorkgroupVO> pageInfo = new PageInfo<>(pageList);
@@ -98,11 +92,6 @@ public class PerWorkgroupServiceImpl  extends DevJdbcDaoSupport implements PerWo
     
     //增删改行
 	public ResultEntity selectForPageWorkgroupEmp(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"work_group_id","workGroupId"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwl.line_content","lineContent"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<PerWorkgroupEmpVO> pageList = groupEmpDao.selectForPage(searchInfo);
         PageInfo<PerWorkgroupEmpVO> pageInfo = new PageInfo<>(pageList);

@@ -57,8 +57,8 @@ public class InteractController extends BaseController {
 	{   	
 		//获取用户可用的所有IRR定义的头列表
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("userInteractName", requestJson.getString("userInteractName"));
-        searchInfo.getConditionMap().put("interactCode", requestJson.getString("interactCode"));
+        searchInfo.putConditionMap("userInteractName", requestJson.getString("userInteractName")).andSqlCondition("USER_INTERACT_NAME","userInteractName");
+        searchInfo.putConditionMap("interactCode", requestJson.getString("interactCode"));
 		return irrService.selectForPageIrrHeaders(searchInfo);
 	}
 	

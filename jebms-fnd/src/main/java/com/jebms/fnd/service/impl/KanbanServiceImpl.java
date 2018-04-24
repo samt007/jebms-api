@@ -11,7 +11,6 @@ import com.github.pagehelper.PageInfo;
 import com.jebms.comm.entity.ResultEntity;
 import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.comm.core.BaseService;
 import com.jebms.fnd.dao.KanbanDao;
 import com.jebms.fnd.entity.Kanban;
@@ -51,19 +50,6 @@ public class KanbanServiceImpl extends BaseService<KanbanDao,Kanban> implements 
      * @throws Exception 
      */
 	public ResultEntity selectForPage(SearchInfo searchInfo) throws Exception {
-    	//首先处理复杂的查询条件。如果还有更加特殊的，直接Append进来即可。
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"customer_name","customerName"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.currency","currency"));
-    	if(searchInfo.getConditionMap().get("amountFlag")!=null&&searchInfo.getConditionMap().get("amountFlag").equals("Y")){
-    		sqlConditionBuf.append(" AND bk.amount>=( "
-    				+ " SELECT sh.meaning FROM fnd_lookup_values sh "
-    				+ " WHERE sh.lookup_type='KANBAN_AMOUNT_SHOW' "
-    				+ " AND sh.language = #{authUser.language}) ");
-    	}
-        //System.out.println("sqlConditionBuf:"+sqlConditionBuf.toString());
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<KanbanVO> pageList = kanbanDao.selectForPage(searchInfo);
         //System.out.println("pageList Size is:"+pageList.size());

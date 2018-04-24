@@ -17,7 +17,6 @@ import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
 import com.jebms.comm.security.model.AuthUser;
 import com.jebms.comm.springjdbc.DevJdbcDaoSupport;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.comm.utils.TypeConverter;
 import com.jebms.fnd.dao.FndWorklogHeaderDao;
 import com.jebms.fnd.dao.FndWorklogLineDao;
@@ -60,11 +59,6 @@ public class FndWorklogServiceImpl  extends DevJdbcDaoSupport implements FndWork
     
     //增删改头
 	public ResultEntity selectForPageHeader(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwh.work_item","workItem"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwh.work_owner_pid","workOwnerPid"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwh.actual_start_date","actualStartDateF","actualStartDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndWorklogHeaderVO> pageList = headerDao.selectForPage(searchInfo);
         PageInfo<FndWorklogHeaderVO> pageInfo = new PageInfo<>(pageList);
@@ -162,11 +156,6 @@ public class FndWorklogServiceImpl  extends DevJdbcDaoSupport implements FndWork
     
     //增删改行
 	public ResultEntity selectForPageLine(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwl.header_id","headerId"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fwl.line_content","lineContent"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndWorklogLineVO> pageList = lineDao.selectForPage(searchInfo);
         PageInfo<FndWorklogLineVO> pageInfo = new PageInfo<>(pageList);

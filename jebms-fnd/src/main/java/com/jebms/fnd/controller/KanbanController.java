@@ -66,9 +66,17 @@ public class KanbanController  extends BaseController  {
     @ApiOperation(value = "查询所有看板分页")
     public ResultEntity getPage(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("customerName", requestJson.getString("customerNameQ"));
-        searchInfo.getConditionMap().put("startDateF", requestJson.getString("startDateF"));
-        searchInfo.getConditionMap().put("startDateT", requestJson.getString("startDateT"));
+        searchInfo.putConditionMap("customerName", requestJson.getString("customerNameQ")).andSqlCondition("customer_name","customerName");
+        searchInfo.putConditionMap("startDateF", requestJson.getString("startDateF"))
+                 		.putConditionMap("startDateT", requestJson.getString("startDateT"))
+                 		.andSqlCondition("bk.start_date","startDateF","startDateT");
+        searchInfo.andSqlCondition("bk.currency","currency");
+    	if("Y".equals(searchInfo.getConditionMap().get("amountFlag"))){
+    		searchInfo.appendSqlCondition(" AND bk.amount>=( "
+    				+ " SELECT sh.meaning FROM fnd_lookup_values sh "
+    				+ " WHERE sh.lookup_type='KANBAN_AMOUNT_SHOW' "
+    				+ " AND sh.language = #{authUser.language}) ");
+    	}
         return kanbanService.selectForPage(searchInfo);
     }
 

@@ -12,12 +12,12 @@
         <logger name="com.jebms.comm" level="INFO" />
     </springProfile>
 
-    <!-- 生产环境 -->
+    <!-- 生产环境 "ERROR"-->
     <springProfile name="dev,pro">
-        <logger name="org.springframework.web" level="ERROR"/>
-        <logger name="org.springboot.sample" level="ERROR" />
-        <logger name="com.jebms.fnd" level="ERROR" />
-        <logger name="com.jebms.comm" level="ERROR" />
+        <logger name="org.springframework.web" level="DEBUG"/>
+        <logger name="org.springboot.sample" level="DEBUG" />
+        <logger name="com.jebms.fnd" level="DEBUG" />
+        <logger name="com.jebms.comm" level="DEBUG" />
     </springProfile>
 
 </configuration>

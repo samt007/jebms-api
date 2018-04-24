@@ -42,8 +42,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取客户名称接口", notes="获取客户名称的LOV的数据接口")
     public ResultEntity getPageCustomer(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("customerName", requestJson.getString("customerName"));
-        searchInfo.getConditionMap().put("customerCode", requestJson.getString("customerCode"));
+        searchInfo.putConditionMap("customerName", requestJson.getString("customerName")).andSqlCondition("customer_name","customerName");
+        searchInfo.putConditionMap("customerCode", requestJson.getString("customerCode")).andSqlCondition("customer_code","customerCode");
         return rgService.getPageCustomer(searchInfo);
     }
     
@@ -74,8 +74,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取用户职责列表接口", notes="获取用户职责列表接口")
     public ResultEntity getPageUserResp(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("userId", requestJson.getString("userId"));
-        searchInfo.getConditionMap().put("respName", requestJson.getString("respName"));
+        searchInfo.putConditionMap("userId", requestJson.getString("userId")).andSqlCondition("fur.user_id","userId");
+        searchInfo.putConditionMap("respName", requestJson.getString("respName")).andSqlCondition("frt.resp_name","respName");
         return rgService.getPageUserResp(searchInfo);
     }
 	
@@ -84,7 +84,7 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取图标接口", notes="获取图标的LOV的数据接口")
     public ResultEntity getPageIcon(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("iconCode", requestJson.getString("iconCode"));
+        searchInfo.putConditionMap("iconCode", requestJson.getString("iconCode")).andSqlCondition("icon_code","iconCode");
         return rgService.selectForPageIcon(searchInfo);
     }
 	
@@ -93,8 +93,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取函数接口", notes="获取函数的LOV的数据接口")
     public ResultEntity getPageFunction(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("functionCode", requestJson.getString("functionCode"));
-        searchInfo.getConditionMap().put("functionName", requestJson.getString("functionName"));
+        searchInfo.putConditionMap("functionCode", requestJson.getString("functionCode")).andSqlCondition("ff.function_code","functionCode");
+        searchInfo.putConditionMap("functionName", requestJson.getString("functionName")).andSqlCondition("fft.function_name","functionName");
         return rgService.selectForPageFunction(searchInfo);
     }
 	
@@ -103,8 +103,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取菜单接口", notes="获取菜单的LOV的数据接口")
     public ResultEntity getPageMenu(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("menuCode", requestJson.getString("menuCode"));
-        searchInfo.getConditionMap().put("menuName", requestJson.getString("menuName"));
+        searchInfo.putConditionMap("menuCode", requestJson.getString("menuCode")).andSqlCondition("fmh.menu_code","menuCode");
+        searchInfo.putConditionMap("menuName", requestJson.getString("menuName")).andSqlCondition("fmht.menu_name","menuName");
         return rgService.selectForPageMenu(searchInfo);
     }
 	
@@ -113,8 +113,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取应用接口", notes="获取应用的LOV的数据接口")
     public ResultEntity getPageAppl(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("applCode", requestJson.getString("applCode"));
-        searchInfo.getConditionMap().put("description", requestJson.getString("description"));
+        searchInfo.putConditionMap("applCode", requestJson.getString("applCode")).andSqlCondition("appl_code","applCode");
+        searchInfo.putConditionMap("description", requestJson.getString("description")).andSqlCondition("description","description");
         return rgService.selectForPageAppl(searchInfo);
     }
 	
@@ -123,8 +123,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取职责接口", notes="获取职责的LOV的数据接口")
     public ResultEntity getPageResp(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("respCode", requestJson.getString("respCode"));
-        searchInfo.getConditionMap().put("respName", requestJson.getString("respName"));
+        searchInfo.putConditionMap("respCode", requestJson.getString("respCode")).andSqlCondition("fr.resp_code","respCode");
+        searchInfo.putConditionMap("respName", requestJson.getString("respName")).andSqlCondition("frt.resp_name","respName");
         return rgService.selectForPageResp(searchInfo);
     }
 	
@@ -133,8 +133,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取人员接口", notes="获取人员的LOV的数据接口")
     public ResultEntity getPagePerson(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("empNumber", requestJson.getString("empNumber"));
-        searchInfo.getConditionMap().put("fullName", requestJson.getString("fullName"));
+        searchInfo.putConditionMap("empNumber", requestJson.getString("empNumber")).andSqlCondition("emp_number","empNumber");
+        searchInfo.putConditionMap("fullName", requestJson.getString("fullName")).andSqlCondition("full_name","fullName");
         return rgService.selectForPagePerson(searchInfo);
     }
 	
@@ -164,8 +164,8 @@ public class RGController  extends BaseController  {
 	@ApiOperation(value="获取部门接口", notes="获取部门的LOV的数据接口")
     public ResultEntity getPageDepartment(@RequestBody JSONObject requestJson) throws Exception {
 		SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-        searchInfo.getConditionMap().put("departmentName", requestJson.getString("departmentName"));
-        searchInfo.getConditionMap().put("departmentCode", requestJson.getString("departmentCode"));
+        searchInfo.putConditionMap("departmentName", requestJson.getString("departmentName")).andSqlCondition("department_name","departmentName");
+        searchInfo.putConditionMap("departmentCode", requestJson.getString("departmentCode")).andSqlCondition("department_code","departmentCode");
         return rgService.selectForPageDepartment(searchInfo);
     }
 }

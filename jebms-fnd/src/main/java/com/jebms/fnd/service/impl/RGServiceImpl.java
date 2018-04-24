@@ -11,7 +11,6 @@ import com.jebms.comm.entity.ResultEntity;
 import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
 import com.jebms.comm.springjdbc.DevJdbcDaoSupport;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.fnd.dao.RGDao;
 import com.jebms.fnd.entity.FndRespVO;
 import com.jebms.fnd.service.RGService;
@@ -51,12 +50,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
 	}
     
 	public ResultEntity getPageCustomer(SearchInfo searchInfo) throws Exception {
-    	//首先处理复杂的查询条件。如果还有更加特殊的，直接Append进来即可。
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"customer_name","customerName"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"customer_code","customerCode"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
-    	//System.out.println("condition:"+searchInfo.getSqlCondition());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> list = rgDao.selectForCustomer(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(list);
@@ -76,12 +69,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
     
 	public ResultEntity getPageUserResp(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fur.user_id","userId"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"frt.resp_name","respName"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
-    	//System.out.println("getPageUserResp SqlCondition:"+searchInfo.getSqlCondition());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndRespVO> pageList = rgDao.selectForUserResp(searchInfo);
         PageInfo<FndRespVO> pageInfo = new PageInfo<>(pageList);
@@ -89,11 +76,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
     
 	public ResultEntity selectForPageIcon(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"icon_code","iconCode"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
-    	//System.out.println(searchInfo.getSqlCondition());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = rgDao.selectForPageIcon(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);
@@ -101,11 +83,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
     
 	public ResultEntity selectForPageFunction(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fft.function_name","functionName"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"ff.function_code","functionCode"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = rgDao.selectForPageFunction(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);
@@ -113,10 +90,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
     
 	public ResultEntity selectForPageMenu(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fmht.menu_name","menuName"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fmh.menu_code","menuCode"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = rgDao.selectForPageMenu(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);
@@ -124,10 +97,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
     
 	public ResultEntity selectForPageAppl(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"appl_code","applCode"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"description","description"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = rgDao.selectForPageAppl(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);
@@ -135,11 +104,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
 
 	public ResultEntity selectForPageResp(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"fr.resp_code","respCode"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"frt.resp_name","respName"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<FndRespVO> pageList = rgDao.selectForPageResp(searchInfo);
         PageInfo<FndRespVO> pageInfo = new PageInfo<>(pageList);
@@ -147,11 +111,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
 
 	public ResultEntity selectForPagePerson(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"emp_number","empNumber"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"full_name","fullName"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = rgDao.selectForPagePerson(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);
@@ -180,11 +139,6 @@ public class RGServiceImpl extends DevJdbcDaoSupport implements RGService {
     }
 
 	public ResultEntity selectForPageDepartment(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"department_code","departmentCode"));
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"department_name","departmentName"));
-    	//sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"bk.start_date","startDateF","startDateT"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = rgDao.selectForPageDepartment(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);

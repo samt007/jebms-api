@@ -7,7 +7,6 @@ import com.github.pagehelper.PageInfo;
 import com.jebms.comm.entity.ResultEntity;
 import com.jebms.comm.entity.ResultInfo;
 import com.jebms.comm.entity.SearchInfo;
-import com.jebms.comm.utils.SqlUtil;
 import com.jebms.comm.utils.TypeConverter;
 import com.jebms.fnd.dao.InteractDao;
 import com.jebms.fnd.service.InteractService;
@@ -70,9 +69,6 @@ public class InteractServiceImpl implements InteractService {
     }
     
     public ResultEntity selectForPageIrrHeaders(SearchInfo searchInfo) throws Exception {
-    	StringBuffer sqlConditionBuf=new StringBuffer();
-    	sqlConditionBuf.append(SqlUtil.getAndStmtMyBatis(searchInfo.getConditionMap(),"USER_INTERACT_NAME","userInteractName"));
-    	searchInfo.setSqlCondition(sqlConditionBuf.toString());
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize() ,searchInfo.isCount());
         List<Map<String, Object>> pageList = irrDao.selectForPageIrrHeaders(searchInfo);
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageList);

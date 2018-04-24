@@ -41,10 +41,6 @@ public class PerWorkgroupController extends BaseController{
     @ApiOperation(value = "组列表")
     public ResultEntity getPageWorkgroup(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	//searchInfo.getConditionMap().put("workItem", requestJson.getString("workItem"));
-    	//searchInfo.getConditionMap().put("workOwnerPid", requestJson.getString("workOwnerPid"));
-    	//searchInfo.getConditionMap().put("actualStartDateF", requestJson.getString("actualStartDateF"));
-    	//searchInfo.getConditionMap().put("actualStartDateT", requestJson.getString("actualStartDateT"));
         return groupService.selectForPageWorkgroup(searchInfo);
     }
 
@@ -84,8 +80,8 @@ public class PerWorkgroupController extends BaseController{
     @ApiOperation(value = "组人员列表")
     public ResultEntity getPageWorkgroupEmp(@RequestBody JSONObject requestJson) throws Exception {
     	SearchInfo searchInfo = new SearchInfo(requestJson,this.authUser);
-    	searchInfo.getConditionMap().put("workGroupId", requestJson.getString("workGroupId"));
     	//searchInfo.getConditionMap().put("WorkgroupEmpContent", requestJson.getString("WorkgroupEmpContent"));
+    	searchInfo.putConditionMap("workGroupId", requestJson.getString("workGroupId")).andSqlCondition("work_group_id","workGroupId");
         return groupService.selectForPageWorkgroupEmp(searchInfo);
     }
 
