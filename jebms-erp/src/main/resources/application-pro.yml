@@ -3,7 +3,7 @@ eureka.ipAddress: 192.168.99.100
 
 spring:
     datasource:
-        url: jdbc:oracle:thin:@192.168.139.21:1521:PROD2
+        url: jdbc:oracle:thin:@192.168.139.81:1521:PROD1
         username: XYG_ALWEB
         password: XYG_ALWEB
         #连接池的配置信息
